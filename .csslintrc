@@ -1,0 +1,2 @@
+--exclude-list=lib/routes/app/normalize.css
+--ignore=compatible-vendor-prefixes

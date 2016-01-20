@@ -1,0 +1,25 @@
+
+.wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  margin: 0;
+  line-height: 2em;
+}
+
+.menu {
+  list-style-type: none;
+  line-height: 2em;
+}
+
+.menu li {
+  display: inline;
+  padding: 0 .25em;
+}

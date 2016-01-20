@@ -1,0 +1,31 @@
+---
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Content
+  description: serves example content
+schemes:
+  - http
+paths:
+  /home:
+    get:
+      responses:
+        200:
+          description: serve home page content
+          schema:
+            type: object
+            default:
+              title: Welcome Home!
+              body: |
+                This is some home page copy.
+  /about:
+    get:
+      responses:
+        200:
+          description: serve about page content
+          schema:
+            type: object
+            default:
+              title: Hello World!
+              body: |
+                This is some about page copy.
