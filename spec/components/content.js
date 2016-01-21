@@ -6,18 +6,14 @@ import { createRenderer } from 'react-addons-test-utils';
 
 import Content from '../../src/components/content';
 
-const props = { title: 'title', body: 'body' };
-
-function render () {
+test('content component output', ({ test, end }) => {
+  const props = { title: 'title', body: 'body' };
   const renderer = createRenderer();
   renderer.render(createElement(Content, props));
-  return renderer.getRenderOutput();
-}
-
-test('content component output', ({ test, end }) => {
+  const root = renderer.getRenderOutput();
 
   test('content component output root element', ({ equal, end }) => {
-    const element = render();
+    const element = root;
     {
       const actual = element.type;
       const expected = 'div';
@@ -34,7 +30,7 @@ test('content component output', ({ test, end }) => {
   });
 
   test('content component output 1st child element', ({ equal, end }) => {
-    const element = render().props.children[0];
+    const element = root.props.children[0];
     const actual = element.type;
     const expected = 'hr';
     const msg = `1st child element should be a ${ expected }`;
@@ -43,7 +39,7 @@ test('content component output', ({ test, end }) => {
   });
 
   test('content component output 2nd child element', ({ equal, end }) => {
-    const element = render().props.children[1];
+    const element = root.props.children[1];
     {
       const actual = element.type;
       const expected = 'h2';
@@ -60,7 +56,7 @@ test('content component output', ({ test, end }) => {
   });
 
   test('content component output 3rd child element', ({ equal, end }) => {
-    const element = render().props.children[2];
+    const element = root.props.children[2];
     {
       const actual = element.type;
       const expected = 'p';
@@ -77,7 +73,7 @@ test('content component output', ({ test, end }) => {
   });
 
   test('content component output 4th child element', ({ equal, end }) => {
-    const element = render().props.children[3];
+    const element = root.props.children[3];
     const actual = element.type;
     const expected = 'hr';
     const msg = `4th child element should be a ${ expected }`;

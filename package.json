@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "test": "tape -r babel-register spec/**/*.js",
+    "test": "tape -r babel-register -r css-modules-require-hook spec/**/*.js",
     "start": "NODE_ENV=production node index.js",
     "devel": "npm run tests & npm run watch & npm run server",
     "tests": "nodemon -w src -w spec -e js,html,css --no-colors -q -x 'npm test'",

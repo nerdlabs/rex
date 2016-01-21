@@ -4,9 +4,9 @@ import test from 'tape';
 
 import reduce from '../../src/reducers/content';
 
-const payload = { foo: 'bar' };
-
 test('content reducer states', ({ test, end }) => {
+
+  const payload = { foo: 'bar' };
 
   test('content reducer default state', ({ deepEqual, end }) => {
     const state = reduce(undefined, { type: 'NONE', payload: null });
