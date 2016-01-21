@@ -1,21 +1,12 @@
 'use strict';
 
-import React from 'react';
+import React from 'react'; // eslint-disable-line
 
-export default class Content extends React.Component {
-  render() {
-    return (
-      <div>
-        <hr />
-          <h2>{ this.props.title }</h2>
-          <p>{ this.props.body }</p>
-        <hr />
-      </div>
-    );
-  }
-}
-
-Content.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  body: React.PropTypes.string.isRequired
-};
+export default ({ title, body }) => (
+  <div>
+    <hr />
+      <h2>{ title }</h2>
+      <p>{ body }</p>
+    <hr />
+  </div>
+);

@@ -4,14 +4,22 @@ require('babel-register');
 require('css-modules-require-hook');
 
 var port = process.env.PORT || 3000;
+var workers = process.env.WEB_CONCURRENCY || 1;
+var api = process.env.API || 'http://localhost:'+port+'/api';
 
-if (process.env.API) {
-  global.__REX_API__ = process.env.API;
-}
-else {
-  global.__REX_API__ = `http://localhost:${port}/api`;
-}
-
+global.__REX_API__ = api;
 global.__REX_DAT__ = undefined;
 
-module.exports = require('./src/server').run(port);
+var manage = require('throng');
+var server = require('./src/server');
+
+manage(
+  function () {
+    var instance = server.run(port);
+    process.on('SIGTERM', function () {
+      instance.close();
+      process.exit();
+    });
+  },
+  { workers: workers }
+);
