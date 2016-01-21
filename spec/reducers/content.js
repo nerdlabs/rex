@@ -4,22 +4,63 @@ import test from 'tape';
 
 import reduce from '../../src/reducers/content';
 
-test('content reducer test', t => {
-  const payload = { foo: 'bar' };
+const payload = { foo: 'bar' };
 
-  const state = reduce(undefined, { type: 'NONE', payload: null });
-  t.ok(state.home, 'default state contains "home"');
-  t.ok(state.about, 'default state contains "about"');
-  t.deepEqual(state.home, {}, 'default home state is empty');
-  t.deepEqual(state.about, {}, 'default about state is empty');
+test('content reducer states', ({ test, end }) => {
 
-  const home = reduce(state, { type: 'UPDATE_HOME_CONTENT', payload });
-  t.deepEqual(home.home, payload, 'home state equals payload');
-  t.deepEqual(home.about, {}, 'about state is empty');
+  test('content reducer default state', ({ deepEqual, end }) => {
+    const state = reduce(undefined, { type: 'NONE', payload: null });
+    {
+      const actual = state.home;
+      const expected = {};
+      deepEqual(actual, expected,
+        'default home state should be an empty object');
+    }
+    {
+      const actual = state.about;
+      const expected = {};
+      deepEqual(actual, expected,
+        'default about state should be an empty object');
+    }
+    end();
+  });
 
-  const about = reduce(home, { type: 'UPDATE_ABOUT_CONTENT', payload });
-  t.deepEqual(about.home, payload, 'home state still equals payload');
-  t.deepEqual(about.about, payload, 'about state now equals payload');
+  test('content reducer partially updated state', ({ deepEqual, end }) => {
+    const state = reduce(undefined, { type: 'UPDATE_HOME_CONTENT', payload });
+    {
+      const actual = state.home;
+      const expected = payload;
+      deepEqual(actual, expected,
+        'updated home state should equal action payload');
+    }
+    {
+      const actual = state.about;
+      const expected = {};
+      deepEqual(actual, expected,
+        'default about state should be an empty object');
+    }
+    end();
+  });
 
-  t.end();
+  test('content reducer fully updated state', ({ deepEqual, end }) => {
+    const state = reduce(
+      reduce(undefined, { type: 'UPDATE_HOME_CONTENT', payload }),
+      { type: 'UPDATE_ABOUT_CONTENT', payload }
+    );
+    {
+      const actual = state.home;
+      const expected = payload;
+      deepEqual(actual, expected,
+        'updated home state should equal action payload');
+    }
+    {
+      const actual = state.about;
+      const expected = payload;
+      deepEqual(actual, expected,
+        'updated about state should equal action payload');
+    }
+    end();
+  });
+
+  end();
 });
