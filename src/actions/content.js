@@ -5,10 +5,10 @@ import { createAction } from 'redux-actions';
 
 function fetch(path) {
   return new Promise((resolve, reject) => {
-    const req = http.get(`${ global.__REX_API__ }/${ path }`, (res) => {
+    const req = http.get(`${ global.__REX_API__ }/${ path }`, res => {
       const chunks = [];
       res.setEncoding('utf8');
-      res.on('data', (chunk) => chunks.push(chunk));
+      res.on('data', chunk => chunks.push(chunk));
       res.on('end', () => {
         if (res.statusCode === 200) {
           resolve(JSON.parse(chunks.join('')));

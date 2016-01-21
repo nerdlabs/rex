@@ -13,14 +13,14 @@ test('content reducer states', ({ test, end }) => {
     {
       const actual = state.home;
       const expected = {};
-      deepEqual(actual, expected,
-        'default home state should be an empty object');
+      const msg = 'default home state should be empty';
+      deepEqual(actual, expected, msg);
     }
     {
       const actual = state.about;
       const expected = {};
-      deepEqual(actual, expected,
-        'default about state should be an empty object');
+      const msg = 'default about state should be empty';
+      deepEqual(actual, expected, msg);
     }
     end();
   });
@@ -30,14 +30,14 @@ test('content reducer states', ({ test, end }) => {
     {
       const actual = state.home;
       const expected = payload;
-      deepEqual(actual, expected,
-        'updated home state should equal action payload');
+      const msg = 'updated home state should equal payload';
+      deepEqual(actual, expected, msg);
     }
     {
       const actual = state.about;
       const expected = {};
-      deepEqual(actual, expected,
-        'default about state should be an empty object');
+      const msg = 'default about state should be empty';
+      deepEqual(actual, expected, msg);
     }
     end();
   });
@@ -50,14 +50,14 @@ test('content reducer states', ({ test, end }) => {
     {
       const actual = state.home;
       const expected = payload;
-      deepEqual(actual, expected,
-        'updated home state should equal action payload');
+      const msg = 'updated home state should equal payload';
+      deepEqual(actual, expected, msg);
     }
     {
       const actual = state.about;
       const expected = payload;
-      deepEqual(actual, expected,
-        'updated about state should equal action payload');
+      const msg = 'updated about state should equal payload';
+      deepEqual(actual, expected, msg);
     }
     end();
   });

@@ -21,14 +21,14 @@ test('content component output', ({ test, end }) => {
     {
       const actual = element.type;
       const expected = 'div';
-      equal(actual, expected,
-        `root element type should be a ${ expected }`);
+      const msg = `root element type should be a ${ expected }`;
+      equal(actual, expected, msg);
     }
     {
       const actual = element.props.children.length;
       const expected = 4;
-      equal(actual, expected,
-        `root element shold have ${ expected } children`);
+      const msg = `root element shold have ${ expected } children`;
+      equal(actual, expected, msg);
     }
     end();
   });
@@ -37,8 +37,8 @@ test('content component output', ({ test, end }) => {
     const element = render().props.children[0];
     const actual = element.type;
     const expected = 'hr';
-    equal(actual, expected,
-      `1st child element should be a ${ expected }`);
+    const msg = `1st child element should be a ${ expected }`;
+    equal(actual, expected, msg);
     end();
   });
 
@@ -47,14 +47,14 @@ test('content component output', ({ test, end }) => {
     {
       const actual = element.type;
       const expected = 'h2';
-      equal(actual, expected,
-        `2nd child element should be a ${ expected }`);
+      const msg = `2nd child element should be a ${ expected }`;
+      equal(actual, expected, msg);
     }
     {
       const actual = element.props.children;
       const expected = props.title;
-      equal(actual, expected,
-        `2nd child element content should be "${ expected }"`);
+      const msg = `2nd child element content should be "${ expected }"`;
+      equal(actual, expected, msg);
     }
     end();
   });
@@ -64,14 +64,14 @@ test('content component output', ({ test, end }) => {
     {
       const actual = element.type;
       const expected = 'p';
-      equal(actual, expected,
-        `3rd child element should be a ${ expected }`);
+      const msg = `3rd child element should be a ${ expected }`;
+      equal(actual, expected, msg);
     }
     {
       const actual = element.props.children;
       const expected = props.body;
-      equal(actual, expected,
-        `3rd child element content should be "${ expected }"`);
+      const msg = `3rd child element content should be "${ expected }"`;
+      equal(actual, expected, msg);
     }
     end();
   });
@@ -80,8 +80,8 @@ test('content component output', ({ test, end }) => {
     const element = render().props.children[3];
     const actual = element.type;
     const expected = 'hr';
-    equal(actual, expected,
-      `4th child element should be a ${ expected }`);
+    const msg = `4th child element should be a ${ expected }`;
+    equal(actual, expected, msg);
     end();
   });
 

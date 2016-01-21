@@ -66,4 +66,4 @@ if (!process.env.API) {
   });
 }
 
-export const run = (port) => server.listen(port);
+export const run = port => server.listen(port);

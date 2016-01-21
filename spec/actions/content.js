@@ -11,14 +11,13 @@ test('content action creators', ({ test, end }) => {
     {
       const actual = action.type;
       const expected = 'UPDATE_HOME_CONTENT';
-      equal(actual, expected,
-        `type should be ${ expected }`);
+      const msg = `type should be ${ expected }`;
+      equal(actual, expected, msg);
     }
     {
-      const actual = action.payload;
-      const expectedConstructor = Promise;
-      ok(actual instanceof expectedConstructor,
-        'payload should be a promise');
+      const value = action.payload instanceof Promise;
+      const msg = 'payload should be a promise';
+      ok(value, msg);
     }
     end();
   });
@@ -28,14 +27,13 @@ test('content action creators', ({ test, end }) => {
     {
       const actual = action.type;
       const expected = 'UPDATE_ABOUT_CONTENT';
-      equal(actual, expected,
-        `type should be ${ expected }`);
+      const msg = `type should be ${ expected }`;
+      equal(actual, expected, msg);
     }
     {
-      const actual = action.payload;
-      const expectedConstructor = Promise;
-      ok(actual instanceof expectedConstructor,
-        'payload should be a promise');
+      const value = action.payload instanceof Promise;
+      const msg = 'payload should be a promise';
+      ok(value, msg);
     }
     end();
   });
