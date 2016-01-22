@@ -55,9 +55,10 @@ app.use((req, res, next) => {
   });
 });
 
-swagger('spec/api.yaml', app, (_, middleware) => {
-  const { metadata, parseRequest, validateRequest, mock } = middleware;
-  app.use('/api', [metadata(), parseRequest(), validateRequest(), mock()]);
-});
+swagger('spec/api.yaml', app,
+  (_, { metadata, parseRequest, validateRequest, mock }) => {
+    app.use('/api', [metadata(), parseRequest(), validateRequest(), mock()]);
+  }
+);
 
 export const listen = port => app.listen(port);
