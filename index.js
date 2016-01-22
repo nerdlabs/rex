@@ -1,8 +1,11 @@
 'use strict';
 
 require('babel-register');
-require('css-modules-require-hook');
-
+var hook = require('css-modules-require-hook');
+if (process.env.NODE_ENV === 'production') {
+  var gen = require('css-modulesify').generateShortName;
+  hook({ generateScopedName: gen });
+}
 var port = process.env.PORT || 3000;
 var workers = process.env.WEB_CONCURRENCY || 1;
 var api = process.env.API || 'http://localhost:'+port+'/api';
