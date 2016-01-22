@@ -8,13 +8,13 @@ import compression from 'compression';
 import swagger from 'swagger-express-middleware';
 import { renderFile } from 'ejs';
 import { renderToString } from 'react-dom/server';
-import { match, RoutingContext } from 'react-router';
+import { match, RouterContext, createMemoryHistory } from 'react-router';
 import { Provider } from 'react-redux';
 
-import makeStore from './store';
 import routes from './routes';
+import createStore from './store';
 
-import { API } from './constants';
+import { DEV, REV, API } from './constants';
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.set('view engine', 'html');
 app.set('views', __dirname);
 
 app.use(compression());
-app.use(express.static('dist'));
+app.use(express.static('dist', { maxage: DEV ? 0 : '1y'}));
 app.use((req, res, next) => {
   match({ routes, location: req.url }, (error, location, renderProps) => {
     switch (true) {
@@ -34,20 +34,21 @@ app.use((req, res, next) => {
     case !!location:
       return res.redirect(location.pathname + location.search);
     case !!renderProps:
-      const store = makeStore();
+      const store = createStore(createMemoryHistory());
       const dispatch = store.dispatch.bind(store);
-      Promise.all(renderProps.components.map(component => {
+      return Promise.all(renderProps.components.map(component => {
         return component.fetchData ? component.fetchData(dispatch) : true;
       }))
       .then(() => {
+        const rev = REV;
         const api = API;
         const state = JSON.stringify(store.getState());
         const body = renderToString(
           React.createElement(Provider, { store },
-            React.createElement(RoutingContext, renderProps)
+            React.createElement(RouterContext, renderProps)
           )
         );
-        return res.render('template', { api, state, body });
+        res.render('template', { rev, api, state, body });
       })
       .catch(next);
     }

@@ -4,14 +4,15 @@
 <title>REX</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="/main.css" />
+<link rel="stylesheet" href="/main.css?<%= rev %>" />
 </head>
 <body>
-<div id="root"><%- body %></div>
+<div id="rex"><%- body %></div>
 <script type="text/javascript">
-window.__REX_DAT__ = <%- state %>;
+window.__REX_REV__ = "<%= rev %>";
 window.__REX_API__ = "<%= api %>";
+window.__REX_DAT__ = <%- state %>;
 </script>
-<script src="/main.js" async></script>
+<script src="/main.js?<%= rev %>" async></script>
 </body>
 </html>

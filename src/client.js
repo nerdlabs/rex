@@ -4,18 +4,17 @@ import 'babel-polyfill';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, browserHistory as history } from 'react-router';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
 
-import makeStore from './store';
 import routes from './routes';
+import createStore from './store';
 
-const store = makeStore();
-const history = store.history;
+const store = createStore(history);
 
 ReactDOM.render(
   React.createElement(Provider, { store },
     React.createElement(Router, { history }, routes)
   ),
-  document.getElementById('root')
+  document.getElementById('rex')
 );

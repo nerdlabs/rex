@@ -3,12 +3,12 @@
 import test from 'tape';
 import { createElement } from 'react';
 import { createRenderer } from 'react-addons-test-utils';
+import { createStore } from 'redux';
 
-import makeStore from '../../src/store';
 import About from '../../src/routes/about';
 
 test('about route component output', ({ test, end }) => {
-  const store = makeStore();
+  const store = createStore(s => s, { content: {}});
   const props = { store };
   const renderer = createRenderer();
   renderer.render(createElement(About, props));
