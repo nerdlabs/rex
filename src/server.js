@@ -60,4 +60,4 @@ swagger('spec/api.yaml', app, (_, middleware) => {
   app.use('/api', [metadata(), parseRequest(), validateRequest(), mock()]);
 });
 
-export const run = port => app.listen(port);
+export const listen = port => app.listen(port);

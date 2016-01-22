@@ -8,9 +8,11 @@ import reducers from './reducers';
 
 import { STATE } from './constants';
 
+const apply = applyMiddleware.bind(null, promiseMiddleware);
+
 export default function createHistoricStore(history) {
-  const middleware = [promiseMiddleware, syncHistory(history)];
-  const store = applyMiddleware(...middleware)(createStore)(reducers, STATE);
-  middleware.pop().listenForReplays(store);
+  const middleware = syncHistory(history);
+  const store = apply(middleware)(createStore)(reducers, STATE);
+  middleware.listenForReplays(store);
   return store;
 }
