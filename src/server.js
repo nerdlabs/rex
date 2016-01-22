@@ -1,7 +1,5 @@
 'use strict';
 
-import 'babel-polyfill';
-
 import React from 'react';
 import express from 'express';
 import compression from 'compression';
@@ -24,15 +22,15 @@ app.set('views', __dirname);
 
 app.use(compression());
 app.use(express.static('dist', { maxage: DEV ? 0 : '1y'}));
-app.use((req, res, next) => {
-  match({ routes, location: req.url }, (error, location, renderProps) => {
+app.use(({ url }, res, next) => {
+  match({ routes, location: url }, (error, location, renderProps) => {
     switch (true) {
     default:
       return next();
     case !!error:
       return next(error);
     case !!location:
-      return res.redirect(location.pathname + location.search);
+      return res.redirect(location.pathname);
     case !!renderProps:
       const store = createStore(createMemoryHistory());
       const dispatch = store.dispatch.bind(store);
@@ -61,4 +59,4 @@ swagger('spec/api.yaml', app,
   }
 );
 
-export const listen = port => app.listen(port);
+export const listen = app.listen.bind(app);

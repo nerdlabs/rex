@@ -8,8 +8,8 @@
     "devel": "npm run tests & npm run watch & npm run server",
     "tests": "nodemon -w src -w spec -e js,html,css --no-colors -q -x 'npm test'",
     "server": "nodemon -w src -w spec/api.yaml -e js,html,css --no-colors -q index.js",
-    "watch": "watchify -d -t babelify -p [css-modulesify --after postcss-cssnext -o dist/main.css] -o dist/main.js src/client.js",
-    "prestart": "NODE_ENV=production browserify -t babelify -g envify -g [uglifyify -x .js] -p [css-modulesify --after postcss-cssnext --after csswring -o dist/main.css] -o dist/main.js src/client.js"
+    "watch": "watchify -d -r babel-polyfill -t babelify -p [css-modulesify --after postcss-cssnext -o dist/main.css] -o dist/main.js src/client.js",
+    "prestart": "NODE_ENV=production browserify -r babel-polyfill -t babelify -g envify -g [uglifyify -x .js] -p [css-modulesify --after postcss-cssnext --after csswring -o dist/main.css] -o dist/main.js src/client.js"
   },
   "repository": {
     "type": "git",
