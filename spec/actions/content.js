@@ -4,13 +4,19 @@ import test from 'tape';
 
 import { fetchHomeContent, fetchAboutContent } from '../../src/actions/content';
 
+import {
+  UPDATE_HOME_CONTENT,
+  UPDATE_ABOUT_CONTENT
+}
+from '../../src/constants';
+
 test('content action creators', ({ test, end }) => {
 
   test('fetchHomeContent action creator output', ({ equal, ok, end }) => {
     const action = fetchHomeContent();
     {
       const actual = action.type;
-      const expected = 'UPDATE_HOME_CONTENT';
+      const expected = UPDATE_HOME_CONTENT;
       const msg = `type should be ${ expected }`;
       equal(actual, expected, msg);
     }
@@ -26,7 +32,7 @@ test('content action creators', ({ test, end }) => {
     const action = fetchAboutContent();
     {
       const actual = action.type;
-      const expected = 'UPDATE_ABOUT_CONTENT';
+      const expected = UPDATE_ABOUT_CONTENT;
       const msg = `type should be ${ expected }`;
       equal(actual, expected, msg);
     }

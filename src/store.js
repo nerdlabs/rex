@@ -7,21 +7,12 @@ import promiseMiddleware from 'redux-promise';
 
 import reducers from './reducers';
 
-export default function makeStore(state = global.__REX_DAT__) {
-  const history = process.browser
-    ? createHistory()
-    : createMemoryHistory();
-  const historyMiddleware = syncHistory(history);
+import { STATE, BROWSER } from './constants';
 
-  const middleware = [ promiseMiddleware, historyMiddleware ];
-  const makeCreateStore = applyMiddleware(...middleware);
-  const createExtStore = makeCreateStore(createStore);
-
-  const store = Object.assign(
-    createExtStore(reducers, state),
-    { history }
-  );
-  historyMiddleware.listenForReplays(store);
-
-  return store;
+export default function makeStore(state = STATE) {
+  const history = BROWSER ? createHistory() : createMemoryHistory();
+  const middleware = [promiseMiddleware, syncHistory(history)];
+  const store = applyMiddleware(...middleware)(createStore)(reducers, state);
+  middleware.pop().listenForReplays(store);
+  return Object.assign(store, { history });
 }

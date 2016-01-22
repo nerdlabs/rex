@@ -14,15 +14,17 @@ import { Provider } from 'react-redux';
 import makeStore from './store';
 import routes from './routes';
 
-const server = express();
+import { API } from './constants';
 
-server.engine('html', renderFile);
-server.set('view engine', 'html');
-server.set('views', __dirname);
+const app = express();
 
-server.use(compression());
-server.use(express.static('dist'));
-server.use((req, res, next) => {
+app.engine('html', renderFile);
+app.set('view engine', 'html');
+app.set('views', __dirname);
+
+app.use(compression());
+app.use(express.static('dist'));
+app.use((req, res, next) => {
   match({ routes, location: req.url }, (error, location, renderProps) => {
     switch (true) {
     default:
@@ -38,7 +40,7 @@ server.use((req, res, next) => {
         return component.fetchData ? component.fetchData(dispatch) : true;
       }))
       .then(() => {
-        const api = global.__REX_API__;
+        const api = API;
         const state = JSON.stringify(store.getState());
         const body = renderToString(
           React.createElement(Provider, { store },
@@ -52,18 +54,9 @@ server.use((req, res, next) => {
   });
 });
 
-if (!process.env.API) {
-  swagger('spec/api.yaml', server, (err, middleware) => {
-    server.use(
-      '/api',
-      [
-        middleware.metadata(),
-        middleware.parseRequest(),
-        middleware.validateRequest(),
-        middleware.mock()
-      ]
-    );
-  });
-}
+swagger('spec/api.yaml', app, (_, middleware) => {
+  const { metadata, parseRequest, validateRequest, mock } = middleware;
+  app.use('/api', [metadata(), parseRequest(), validateRequest(), mock()]);
+});
 
-export const run = port => server.listen(port);
+export const run = port => app.listen(port);
