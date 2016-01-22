@@ -13,22 +13,17 @@ else {
 }
 
 require('git-rev').short(function (rev) {
-  var port = process.env.PORT || 3000;
-  var workers = process.env.WEB_CONCURRENCY || 1;
-  var api = process.env.API || 'http://localhost:'+port+'/api';
-
   global.__REX_REV__ = rev;
-  global.__REX_API__ = api;
+  global.__REX_API__ = process.env.API || 'http://localhost:3000/api';
   global.__REX_DAT__ = undefined;
-
   require('throng')(
     function () {
-      var server = require('./src/server').listen(port);
+      var server = require('./src/server').listen(process.env.PORT || 3000);
       process.on('SIGTERM', function () {
         server.close();
         process.exit();
       });
     },
-    { workers: workers }
+    { workers: process.env.WEB_CONCURRENCY || 1 }
   );
 });

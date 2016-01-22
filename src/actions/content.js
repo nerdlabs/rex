@@ -1,6 +1,6 @@
 'use strict';
 
-import http from 'http';
+import { get } from 'http';
 import { createAction } from 'redux-actions';
 
 import {
@@ -12,7 +12,7 @@ from '../constants';
 
 function fetch(path) {
   return new Promise((resolve, reject) => {
-    http.get(`${ API }/${ path }`, res => {
+    get(`${ API }/${ path }`, res => {
       const buffers = [];
       res.on('data', buffer => buffers.push(buffer));
       res.on('end', () => {
@@ -30,11 +30,9 @@ function fetch(path) {
 }
 
 export const fetchHomeContent = createAction(
-  UPDATE_HOME_CONTENT,
-  fetch.bind(null, 'home')
+  UPDATE_HOME_CONTENT, fetch.bind(null, 'home')
 );
 
 export const fetchAboutContent = createAction(
-  UPDATE_ABOUT_CONTENT,
-  fetch.bind(null, 'about')
+  UPDATE_ABOUT_CONTENT, fetch.bind(null, 'about')
 );
