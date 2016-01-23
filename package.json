@@ -9,7 +9,10 @@
     "test-min": "tape -r babel-register -r css-modules-require-hook spec/**/*.js | tap-dot",
     "tests": "npm run test --silent & nodemon -w src -w spec -e js,html,css --no-colors -q -C -x 'npm run test-min --silent'",
     "server": "nodemon -w src -w spec/api.yaml -e js,html,css --no-colors -q index.js",
-    "watch": "watchify -d -t babelify -p [css-modulesify --after postcss-cssnext -o dist/main.css] -o dist/main.js src/client.js",
+    "watch": "mkdir -p dist; touch dist/main.js.tmp; npm run watch-js & npm run watch-extract",
+    "watch-js": "watchify -dv -t babelify -p [css-modulesify --after postcss-cssnext -o dist/main.css] -o dist/main.js.tmp src/client.js",
+    "watch-extract": "onchange dist/main.js.tmp -- npm run extract",
+    "extract": "<dist/main.js.tmp exorcist dist/main.js.map > dist/main.js",
     "prestart": "NODE_ENV=production browserify -t babelify -g envify -g [uglifyify -x .js] -p [css-modulesify --after postcss-cssnext --after csswring -o dist/main.css] -o dist/main.js src/client.js"
   },
   "repository": {
@@ -30,7 +33,9 @@
     "envify": "3.4.0",
     "eslint": "1.10.3",
     "eslint-plugin-react": "3.15.0",
+    "exorcist": "0.4.0",
     "nodemon": "1.8.1",
+    "onchange": "2.0.0",
     "postcss-cssnext": "2.4.0",
     "react-addons-test-utils": "0.14.6",
     "tap-dot": "1.0.1",
