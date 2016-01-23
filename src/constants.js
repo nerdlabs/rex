@@ -1,4 +1,3 @@
-'use strict';
 
 export const ENV = process.env.NODE_ENV;
 export const DEV = ENV !== 'production';

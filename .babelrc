@@ -5,6 +5,7 @@
     "react"
   ],
   "plugins": [
-    "babel-plugin-transform-decorators-legacy"
+    "babel-plugin-transform-decorators-legacy",
+    "babel-plugin-transform-strict-mode"
   ]
 }

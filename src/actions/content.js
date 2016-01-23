@@ -1,4 +1,3 @@
-'use strict';
 
 import { get } from 'http';
 import { createAction } from 'redux-actions';

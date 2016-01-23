@@ -1,4 +1,3 @@
-'use strict';
 
 import { createStore, applyMiddleware } from 'redux';
 import { syncHistory } from 'redux-simple-router';

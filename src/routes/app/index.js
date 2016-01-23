@@ -1,4 +1,3 @@
-'use strict';
 
 import React from 'react'; // eslint-disable-line
 import { Link, IndexLink } from 'react-router';
