@@ -9,8 +9,8 @@
     "test-min": "tape -r babel-register -r css-modules-require-hook spec/**/*.js | tap-dot",
     "tests": "npm run test --silent & nodemon -w src -w spec -e js,html,css --no-colors -q -C -x 'npm run test-min --silent'",
     "server": "nodemon -w src -w spec/api.yaml -e js,html,css --no-colors -q index.js",
-    "watch": "watchify -d -r babel-polyfill -t babelify -p [css-modulesify --after postcss-cssnext -o dist/main.css] -o dist/main.js src/client.js",
-    "prestart": "NODE_ENV=production browserify -r babel-polyfill -t babelify -g envify -g [uglifyify -x .js] -p [css-modulesify --after postcss-cssnext --after csswring -o dist/main.css] -o dist/main.js src/client.js"
+    "watch": "watchify -d -t babelify -p [css-modulesify --after postcss-cssnext -o dist/main.css] -o dist/main.js src/client.js",
+    "prestart": "NODE_ENV=production browserify -t babelify -g envify -g [uglifyify -x .js] -p [css-modulesify --after postcss-cssnext --after csswring -o dist/main.css] -o dist/main.js src/client.js"
   },
   "repository": {
     "type": "git",
@@ -43,7 +43,6 @@
     "babel-core": "6.4.5",
     "babel-plugin-transform-decorators-legacy": "1.3.4",
     "babel-plugin-transform-strict-mode": "6.3.13",
-    "babel-polyfill": "6.3.14",
     "babel-preset-es2015": "6.3.13",
     "babel-preset-react": "6.3.13",
     "babel-preset-stage-0": "6.3.13",
