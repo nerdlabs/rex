@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "test": "tape -r babel-register -r css-modules-require-hook spec/**/*.js",
     "start": "NODE_ENV=production node index.js",
     "devel": "npm run tests & npm run watch & npm run server",
-    "tests": "nodemon -w src -w spec -e js,html,css --no-colors -q -x 'npm test'",
+    "test": "tape -r babel-register -r css-modules-require-hook spec/**/*.js | tap-spec",
+    "test-min": "tape -r babel-register -r css-modules-require-hook spec/**/*.js | tap-dot",
+    "tests": "npm run test --silent & nodemon -w src -w spec -e js,html,css --no-colors -q -C -x 'npm run test-min --silent'",
     "server": "nodemon -w src -w spec/api.yaml -e js,html,css --no-colors -q index.js",
     "watch": "watchify -d -r babel-polyfill -t babelify -p [css-modulesify --after postcss-cssnext -o dist/main.css] -o dist/main.js src/client.js",
     "prestart": "NODE_ENV=production browserify -r babel-polyfill -t babelify -g envify -g [uglifyify -x .js] -p [css-modulesify --after postcss-cssnext --after csswring -o dist/main.css] -o dist/main.js src/client.js"
@@ -32,6 +33,8 @@
     "nodemon": "1.8.1",
     "postcss-cssnext": "2.4.0",
     "react-addons-test-utils": "0.14.6",
+    "tap-dot": "1.0.1",
+    "tap-spec": "4.1.1",
     "tape": "4.4.0",
     "uglifyify": "3.0.1",
     "watchify": "3.7.0"
