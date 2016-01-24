@@ -50,6 +50,7 @@
     "ejs": "2.3.4",
     "express": "4.13.4",
     "git-rev": "0.2.1",
+    "isomorphic-fetch": "2.2.1",
     "postcss": "5.0.14",
     "postcss-modules-extract-imports": "1.0.0",
     "postcss-modules-local-by-default": "1.0.1",
