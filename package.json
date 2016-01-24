@@ -14,12 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dmbch/rex.git"
+    "url": "git+https://github.com/nerdlabs/rex.git"
   },
   "bugs": {
-    "url": "https://github.com/dmbch/rex/issues"
+    "url": "https://github.com/nerdlabs/rex/issues"
   },
-  "homepage": "https://github.com/dmbch/rex#readme",
+  "homepage": "https://github.com/nerdlabs/rex#readme",
   "devDependencies": {
     "babel-eslint": "5.0.0-beta6",
     "babelify": "7.2.0",
