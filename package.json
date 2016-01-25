@@ -50,13 +50,9 @@
     "browserify": "13.0.0",
     "compression": "1.6.1",
     "css-modules-require-hook": "2.1.0",
-<<<<<<< HEAD
-    "ejs": "2.4.1",
-=======
     "css-modulesify": "0.16.1",
     "csswring": "4.2.1",
-    "ejs": "2.3.4",
->>>>>>> standard-structure
+    "ejs": "2.4.1",
     "express": "4.13.4",
     "git-rev": "0.2.1",
     "isomorphic-fetch": "2.2.1",
