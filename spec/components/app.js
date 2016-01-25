@@ -3,7 +3,7 @@ import test from 'tape';
 import { createElement } from 'react';
 import { createRenderer } from 'react-addons-test-utils';
 
-import App from '../../src/routes/app';
+import App from '../../src/components/app';
 
 test('app route component output', ({ test, end }) => {
   const props = {};
