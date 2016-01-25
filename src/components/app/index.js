@@ -2,7 +2,6 @@
 import React from 'react'; // eslint-disable-line
 import { Link, IndexLink } from 'react-router';
 
-import './normalize.css';
 import styles from './styles.css';
 
 export default ({ children }) => (

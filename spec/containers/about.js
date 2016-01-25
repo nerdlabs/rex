@@ -4,7 +4,7 @@ import { createElement } from 'react';
 import { createRenderer } from 'react-addons-test-utils';
 import { createStore } from 'redux';
 
-import About from '../../src/routes/about';
+import About from '../../src/containers/about';
 
 test('about route component output', ({ test, end }) => {
   const store = createStore(s => s, { content: {}});
