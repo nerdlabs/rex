@@ -25,23 +25,17 @@
   "homepage": "https://github.com/nerdlabs/rex#readme",
   "devDependencies": {
     "babel-eslint": "5.0.0-beta6",
-    "babelify": "7.2.0",
-    "browserify": "13.0.0",
-    "css-modulesify": "0.16.1",
     "csslint": "0.10.0",
-    "csswring": "4.2.1",
     "envify": "3.4.0",
     "eslint": "1.10.3",
     "eslint-plugin-react": "3.16.1",
     "exorcist": "0.4.0",
     "nodemon": "1.8.1",
     "onchange": "2.0.0",
-    "postcss-cssnext": "2.4.0",
     "react-addons-test-utils": "0.14.6",
     "tap-dot": "1.0.1",
     "tap-spec": "4.1.1",
     "tape": "4.4.0",
-    "uglifyify": "3.0.1",
     "watchify": "3.7.0"
   },
   "dependencies": {
@@ -52,13 +46,22 @@
     "babel-preset-react": "6.3.13",
     "babel-preset-stage-0": "6.3.13",
     "babel-register": "6.4.3",
+    "babelify": "7.2.0",
+    "browserify": "13.0.0",
     "compression": "1.6.1",
     "css-modules-require-hook": "2.1.0",
+<<<<<<< HEAD
     "ejs": "2.4.1",
+=======
+    "css-modulesify": "0.16.1",
+    "csswring": "4.2.1",
+    "ejs": "2.3.4",
+>>>>>>> standard-structure
     "express": "4.13.4",
     "git-rev": "0.2.1",
     "isomorphic-fetch": "2.2.1",
     "postcss": "5.0.14",
+    "postcss-cssnext": "2.4.0",
     "postcss-modules-extract-imports": "1.0.0",
     "postcss-modules-local-by-default": "1.0.1",
     "postcss-modules-scope": "1.0.0",
@@ -72,6 +75,7 @@
     "redux-promise": "0.5.1",
     "redux-simple-router": "2.0.4",
     "swagger-express-middleware": "1.0.0-alpha.12",
-    "throng": "1.0.1"
+    "throng": "1.0.1",
+    "uglifyify": "3.0.1"
   }
 }

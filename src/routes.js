@@ -2,9 +2,8 @@
 import React from 'react'; // eslint-disable-line
 import { Route, IndexRoute } from 'react-router';
 
-import App from './app';
-import Home from './home';
-import About from './about';
+import { App } from './components';
+import { Home, About } from './containers';
 
 export default (
   <Route path="/" component={ App }>

@@ -4,7 +4,7 @@ import { createElement } from 'react';
 import { createRenderer } from 'react-addons-test-utils';
 import { createStore } from 'redux';
 
-import Home from '../../src/routes/home';
+import Home from '../../src/containers/home';
 
 test('home route component output', ({ test, end }) => {
   const store = createStore(s => s, { content: {}});
