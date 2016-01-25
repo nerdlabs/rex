@@ -12,6 +12,7 @@ else {
 }
 
 require('git-rev').short(function (rev) {
+  // TODO: globals won't work with jspm
   global.__REX_REV__ = rev;
   global.__REX_API__ = process.env.API || 'http://localhost:3000/api';
   global.__REX_DAT__ = undefined;

@@ -3,8 +3,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchAboutContent } from '../actions';
-import { Content } from '../components';
+import { fetchAboutContent } from '../actions/content';
+import Content from '../components/content';
 
 @connect(state => ({ content: state.content.about }))
 export default class About extends React.Component {

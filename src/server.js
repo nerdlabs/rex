@@ -20,7 +20,9 @@ app.set('view engine', 'html');
 app.set('views', __dirname);
 
 app.use(compression());
-app.use(express.static('dist', { maxage: DEV ? 0 : '1y'}));
+// TODO: need to figure out how to configure jspm paths correctly...
+app.use(express.static('.', { maxage: DEV ? 0 : '1y'}));
+
 app.use(({ url }, res, next) => {
   match({ routes, location: url }, (error, location, renderProps) => {
     switch (true) {

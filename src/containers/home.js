@@ -2,8 +2,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchHomeContent } from '../actions';
-import { Content } from '../components';
+import { fetchHomeContent } from '../actions/content';
+import Content from '../components/content';
 
 @connect(state => ({ content: state.content.home }))
 export default class Home extends React.Component {

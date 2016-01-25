@@ -3,7 +3,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { syncHistory } from 'redux-simple-router';
 import promiseMiddleware from 'redux-promise';
 
-import reducers from './reducers';
+import reducers from './reducers/index';
 
 import { STATE } from './constants';
 

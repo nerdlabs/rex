@@ -1,9 +1,9 @@
-
-export const ENV = process.env.NODE_ENV;
+// TODO: everything is broken with jspm
+export const ENV = 'development';
 export const DEV = ENV !== 'production';
-export const REV = global.__REX_REV__;
-export const API = global.__REX_API__;
-export const STATE = global.__REX_DAT__;
+export const REV = '1';
+export const API = 'http://localhost:3000/api';
+export const STATE = undefined;
 
 export const UPDATE_HOME_CONTENT = 'UPDATE_HOME_CONTENT';
 export const UPDATE_ABOUT_CONTENT = 'UPDATE_ABOUT_CONTENT';

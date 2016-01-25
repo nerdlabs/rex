@@ -2,7 +2,7 @@
 import React from 'react'; // eslint-disable-line
 import { Link, IndexLink } from 'react-router';
 
-import styles from './styles.css';
+import styles from './styles.css'; // TODO: needs a trailing '!' for jspm
 
 export default ({ children }) => (
   <div className={ styles.wrapper }>
