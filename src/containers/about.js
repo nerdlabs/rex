@@ -1,4 +1,3 @@
-'use strict';
 
 import React from 'react';
 import { connect } from 'react-redux';
@@ -8,13 +7,13 @@ import { Content } from '../components';
 
 @connect(state => ({ content: state.content.about }))
 export default class About extends React.Component {
-  static fetchData(dispatch) {
-    return dispatch(fetchAboutContent());
-  }
+  static needs = [
+    fetchAboutContent
+  ];
   componentDidMount() {
     const { dispatch, content } = this.props;
-    if (!content.title) {
-      this.constructor.fetchData(dispatch);
+    if (!Object.keys(content).length) {
+      this.constructor.needs.map(fb => dispatch(fb()));
     }
   }
   render() {

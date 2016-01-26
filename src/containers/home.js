@@ -7,13 +7,13 @@ import { Content } from '../components';
 
 @connect(state => ({ content: state.content.home }))
 export default class Home extends React.Component {
-  static fetchData(dispatch) {
-    return dispatch(fetchHomeContent());
-  }
+  static needs = [
+    fetchHomeContent
+  ];
   componentDidMount() {
     const { dispatch, content } = this.props;
-    if (!content.title) {
-      this.constructor.fetchData(dispatch);
+    if (!Object.keys(content).length) {
+      this.constructor.needs.map(fn => dispatch(fn()));
     }
   }
   render() {

@@ -1,6 +1,6 @@
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { createElement } from 'react';
+import { render } from 'react-dom';
 import { Router, browserHistory as history } from 'react-router';
 import { Provider } from 'react-redux';
 
@@ -9,9 +9,9 @@ import createStore from './store';
 
 const store = createStore(history);
 
-ReactDOM.render(
-  React.createElement(Provider, { store },
-    React.createElement(Router, { history }, routes)
+render(
+  createElement(Provider, { store },
+    createElement(Router, { history }, routes)
   ),
   document.getElementById('rex')
 );
