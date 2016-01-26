@@ -13,7 +13,7 @@ export default class Home extends React.Component {
   componentDidMount() {
     const { dispatch, content } = this.props;
     if (!Object.keys(content).length) {
-      this.constructor.needs.map(fn => dispatch(fn()));
+      this.constructor.needs.map(need => dispatch(need()));
     }
   }
   render() {

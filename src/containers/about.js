@@ -13,7 +13,7 @@ export default class About extends React.Component {
   componentDidMount() {
     const { dispatch, content } = this.props;
     if (!Object.keys(content).length) {
-      this.constructor.needs.map(fb => dispatch(fb()));
+      this.constructor.needs.map(need => dispatch(need()));
     }
   }
   render() {
