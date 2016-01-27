@@ -3,17 +3,18 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "start": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run start-production; else npm run start-development; fi",
-    "start-production": "npm run build; node index.js",
-    "start-development": "npm run tests & npm run watch & npm run server",
+    "start": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run start-prod; else npm run start-dev; fi",
+    "start-prod": "npm run build; node index.js",
+    "start-dev": "npm run tests & npm run watch & npm run server",
     "test": "tape -r babel-register -r css-modules-require-hook spec/**/*.js | tap-dot",
     "tests": "npm run test --silent & nodemon -w src -w spec -e js,html,css --no-colors -q -C -x 'npm run test --silent'",
     "server": "nodemon -w src -w spec/api.yaml -e js,html,css --no-colors -q index.js",
-    "watch": "mkdir -p dist; touch dist/main.js.tmp; npm run watch-js & npm run watch-extract",
-    "watch-js": "watchify -dv -t babelify -p [css-modulesify --after postcss-cssnext --after $PWD/util/postcss-normalize -o dist/main.css] -o dist/main.js.tmp src/client.js",
-    "watch-extract": "onchange dist/main.js.tmp -- npm run extract",
+    "watch": "touch dist/main.js.tmp; npm run watch-js & npm run watch-extract",
+    "watch-js": "watchify -d -t babelify -p [css-modulesify --after postcss-cssnext --after $PWD/util/postcss-normalize -o dist/main.css] -o dist/main.js.tmp src/client.js",
+    "watch-extract": "onchange dist/main.js.tmp -- npm run extract --silent",
     "extract": "<dist/main.js.tmp exorcist dist/main.js.map > dist/main.js",
-    "build": "browserify -t babelify -g envify -g [uglifyify -x .js] -p [css-modulesify --after postcss-cssnext --after $PWD/util/postcss-normalize --after csswring -o dist/main.css] -o dist/main.js src/client.js"
+    "build": "browserify -t babelify -g envify -g [uglifyify -x .js] -p [css-modulesify --after postcss-cssnext --after $PWD/util/postcss-normalize --after csswring -o dist/main.css] -o dist/main.js src/client.js",
+    "postinstall": "mkdir -p dist"
   },
   "repository": {
     "type": "git",
@@ -65,10 +66,10 @@
     "react-dom": "0.14.6",
     "react-redux": "4.0.6",
     "react-router": "2.0.0-rc5",
+    "react-router-redux": "2.1.0",
     "redux": "3.0.6",
     "redux-actions": "0.9.1",
     "redux-promise": "0.5.1",
-    "redux-simple-router": "2.0.4",
     "swagger-express-middleware": "1.0.0-alpha.12",
     "throng": "1.0.1",
     "uglifyify": "3.0.1"
