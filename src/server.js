@@ -1,9 +1,10 @@
 
-import React from 'react';
 import express from 'express';
 import compression from 'compression';
 import swagger from 'swagger-express-middleware';
 import { renderFile } from 'ejs';
+
+import { createElement } from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext, createMemoryHistory } from 'react-router';
 import { Provider } from 'react-redux';
@@ -11,7 +12,7 @@ import { Provider } from 'react-redux';
 import routes from './routes';
 import createStore from './store';
 
-import { DEV, REV, API } from './constants';
+import { DEV, REV as rev, API as api } from './constants';
 
 const app = express();
 
@@ -32,17 +33,14 @@ app.use(({ url }, res, next) => {
       return res.redirect(location.pathname);
     case !!renderProps:
       const store = createStore(createMemoryHistory());
-      const dispatch = store.dispatch.bind(store);
-      return Promise.all(renderProps.components.map(component => {
-        return component.fetchData ? component.fetchData(dispatch) : true;
-      }))
+      return Promise.all(renderProps.components.map(({ needs }) => (
+        needs ? Promise.all(needs.map(need => store.dispatch(need()))) : true
+      )))
       .then(() => {
-        const rev = REV;
-        const api = API;
         const state = JSON.stringify(store.getState());
         const body = renderToString(
-          React.createElement(Provider, { store },
-            React.createElement(RouterContext, renderProps)
+          createElement(Provider, { store },
+            createElement(RouterContext, renderProps)
           )
         );
         res.render('template', { rev, api, state, body });

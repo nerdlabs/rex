@@ -5,9 +5,8 @@
   "scripts": {
     "start": "NODE_ENV=production node index.js",
     "devel": "npm run tests & npm run watch & npm run server",
-    "test": "tape -r babel-register -r css-modules-require-hook spec/**/*.js | tap-spec",
-    "test-min": "tape -r babel-register -r css-modules-require-hook spec/**/*.js | tap-dot",
-    "tests": "npm run test --silent & nodemon -w src -w spec -e js,html,css --no-colors -q -C -x 'npm run test-min --silent'",
+    "test": "tape -r babel-register -r css-modules-require-hook spec/**/*.js | tap-dot",
+    "tests": "npm run test --silent & nodemon -w src -w spec -e js,html,css --no-colors -q -C -x 'npm run test --silent'",
     "server": "nodemon -w src -w spec/api.yaml -e js,html,css --no-colors -q index.js",
     "watch": "mkdir -p dist; touch dist/main.js.tmp; npm run watch-js & npm run watch-extract",
     "watch-js": "watchify -dv -t babelify -p [css-modulesify --after postcss-cssnext -o dist/main.css] -o dist/main.js.tmp src/client.js",
@@ -34,7 +33,6 @@
     "onchange": "2.0.0",
     "react-addons-test-utils": "0.14.6",
     "tap-dot": "1.0.1",
-    "tap-spec": "4.1.1",
     "tape": "4.4.0",
     "watchify": "3.7.0"
   },
