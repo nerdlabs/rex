@@ -10,10 +10,10 @@
     "tests": "npm run test --silent & nodemon -w src -w spec -e js,html,css --no-colors -q -C -x 'npm run test --silent'",
     "server": "nodemon -w src -w spec/api.yaml -e js,html,css --no-colors -q index.js",
     "watch": "touch dist/main.js.tmp; npm run watch-js & npm run watch-extract",
-    "watch-js": "watchify -d -t babelify -p [css-modulesify --after postcss-cssnext --after $PWD/util/postcss-normalize -o dist/main.css] -o dist/main.js.tmp src/client.js",
+    "watch-js": "watchify -d -t babelify -p [css-modulesify --after postcss-cssnext --after $PWD/util/postcss-global -o dist/main.css] -o dist/main.js.tmp src/client.js",
     "watch-extract": "onchange dist/main.js.tmp -- npm run extract --silent",
     "extract": "<dist/main.js.tmp exorcist dist/main.js.map > dist/main.js",
-    "build": "browserify -t babelify -g envify -g [uglifyify -x .js] -p [css-modulesify --after postcss-cssnext --after $PWD/util/postcss-normalize --after csswring -o dist/main.css] -o dist/main.js src/client.js",
+    "build": "browserify -t babelify -g envify -g [uglifyify -x .js] -p [css-modulesify --after postcss-cssnext --after $PWD/util/postcss-global --after csswring -o dist/main.css] -o dist/main.js src/client.js",
     "postinstall": "mkdir -p dist"
   },
   "repository": {
