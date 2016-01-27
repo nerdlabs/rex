@@ -20,7 +20,10 @@ server.getAssetUrl = require('./util/asset-url');
 
 spawn(
   function () {
-    server.listen(process.env.PORT || 3000);
+    var port = process.env.PORT || 3000;
+    server.listen(port, function () {
+      console.log(`> rex listening on port ${port}`); // eslint-disable-line
+    });
     process.on('SIGTERM', function () {
       server.close();
       process.exit();
