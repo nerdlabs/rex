@@ -12,14 +12,19 @@
 .logo {
   margin: 0;
   line-height: 2em;
+  & a {
+    text-decoration: none;
+  }
 }
 
 .menu {
   list-style-type: none;
   line-height: 2em;
-}
-
-.menu li {
-  display: inline;
-  padding: 0 .25em;
+  & li {
+    display: inline;
+    padding: 0 .25em;
+    & a {
+      text-decoration: none;
+    }
+  }
 }
