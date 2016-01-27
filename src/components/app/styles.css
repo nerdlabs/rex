@@ -1,12 +1,21 @@
 
+:root {
+  --primary-Color: #333;
+}
+
 .wrapper {
   width: 80%;
-  margin: 0 auto;
+  max-width: 960px;
+  margin: 1em auto;
+  color: var(--primary-Color);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
+  margin-bottom: -.5em;
+  padding: 0 1em;
+  background: linear-gradient(top, #fbfbfb, #ddd);
 }
 
 .logo {
@@ -14,17 +23,19 @@
   line-height: 2em;
   & a {
     text-decoration: none;
+    color: var(--primary-Color);
   }
 }
 
 .menu {
-  list-style-type: none;
   line-height: 2em;
+  list-style-type: none;
   & li {
     display: inline;
     padding: 0 .25em;
     & a {
       text-decoration: none;
+      color: var(--primary-Color);
     }
   }
 }
