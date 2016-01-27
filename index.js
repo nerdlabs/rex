@@ -11,18 +11,20 @@ else {
   require('css-modules-require-hook');
 }
 
-require('git-rev').short(function (rev) {
-  global.__REX_REV__ = rev;
-  global.__REX_API__ = process.env.API || 'http://localhost:3000/api';
-  global.__REX_DAT__ = undefined;
-  require('throng')(
-    function () {
-      var server = require('./src/server').listen(process.env.PORT || 3000);
-      process.on('SIGTERM', function () {
-        server.close();
-        process.exit();
-      });
-    },
-    { workers: process.env.WEB_CONCURRENCY || 1 }
-  );
-});
+global.__REX_API__ = process.env.API || 'http://localhost:3000/api';
+global.__REX_DAT__ = undefined;
+
+var spawn = require('throng');
+var server = require('./src/server').default;
+server.getAssetUrl = require('./util/asset-url');
+
+spawn(
+  function () {
+    server.listen(process.env.PORT || 3000);
+    process.on('SIGTERM', function () {
+      server.close();
+      process.exit();
+    });
+  },
+  { workers: process.env.WEB_CONCURRENCY || 1 }
+);
