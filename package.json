@@ -24,7 +24,6 @@
   "homepage": "https://github.com/nerdlabs/rex#readme",
   "devDependencies": {
     "babel-eslint": "5.0.0-beta6",
-    "csslint": "0.10.0",
     "envify": "3.4.0",
     "eslint": "1.10.3",
     "eslint-plugin-react": "3.16.1",
