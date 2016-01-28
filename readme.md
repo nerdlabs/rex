@@ -5,3 +5,18 @@
 [![Dependency Status](https://david-dm.org/nerdlabs/rex.svg)](https://david-dm.org/nerdlabs/rex)
 
 yet another react/redux boilerplate
+
+
+### Development mode
+
+```
+npm install
+npm start
+```
+
+### Production Mode
+
+```
+npm install --production
+npm start --production
+```
