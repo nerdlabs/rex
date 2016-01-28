@@ -9,19 +9,15 @@ import {
 }
 from '../constants';
 
-const checkStatus = (response) => {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  }
-  const error = new Error(`http status: ${ response.statusCode }`);
-  error.response = response;
-  throw error;
-};
-
-const parseJSON = (response) => response.json();
-
 function fetchJSON(path) {
-  return fetch(`${ API }/${ path }`).then(checkStatus).then(parseJSON);
+  return fetch(`${ API }/${ path }`)
+  .then(res => {
+    if (res.status >= 200 && res.status < 300) {
+      return res;
+    }
+    throw new Error(`http status: ${ res.status }`);
+  })
+  .then(res => res.json());
 }
 
 export const fetchHomeContent = createAction(
