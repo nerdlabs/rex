@@ -1,6 +1,6 @@
 
 import { createStore, applyMiddleware } from 'redux';
-import { syncHistory } from 'redux-simple-router';
+import { syncHistory } from 'react-router-redux';
 import promiseMiddleware from 'redux-promise';
 
 import reducers from './reducers';

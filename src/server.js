@@ -12,7 +12,7 @@ import { Provider } from 'react-redux';
 import routes from './routes';
 import createStore from './store';
 
-import { DEV, REV as rev, API as api } from './constants';
+import { DEV, API } from './constants';
 
 const app = express();
 
@@ -37,13 +37,16 @@ app.use(({ url }, res, next) => {
         needs ? Promise.all(needs.map(need => store.dispatch(need()))) : true
       )))
       .then(() => {
+        const api = API;
+        const js = app.getAssetUrl('main.js');
+        const css = app.getAssetUrl('main.css');
         const state = JSON.stringify(store.getState());
         const body = renderToString(
           createElement(Provider, { store },
             createElement(RouterContext, renderProps)
           )
         );
-        res.render('template', { rev, api, state, body });
+        res.render('template', { api, js, css, state, body });
       })
       .catch(next);
     }
@@ -56,4 +59,6 @@ swagger('spec/api.yaml', app,
   }
 );
 
-export const listen = app.listen.bind(app);
+app.getAssetUrl = path => `/${path}`;
+
+export default app;
