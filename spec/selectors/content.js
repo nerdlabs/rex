@@ -7,7 +7,7 @@ import {
 }
 from '../../src/selectors';
 
-test('content action creators', ({ test, end }) => {
+test('content selectors', ({ test, end }) => {
 
   test('homeContentSelector selector output', ({ deepEqual, end }) => {
     const actual = homeContentSelector({ content: { home: 'foo' }});
