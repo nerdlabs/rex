@@ -19,14 +19,14 @@ mocking an api using Swagger specs for local development.
 
 ## Building Blocks
 
-### Babel
+#### Babel
 
 Using [Babel][babel], all our ECMAScript and [JSX][jsx] code in is being
 transpiled to vanilla JavaScript (ES5) that is understood by NodeJS and all
 proper Browsers. If you need to get to know all that nice new syntax, there is
 plenty of [great][es6] [resources][katas] online.
 
-### Flux
+#### Flux
 
 [Flux][flux] is not so much a framework or module, but rather an architectural
 pattern. It prescribes a unidirectional data flow that complements React view
@@ -37,7 +37,7 @@ application state containers) and some view components. These view components
 create and dispatch actions that modify the stores. Changes in stores, in turn,
 trigger re-rendering of the views.
 
-### Redux
+#### Redux
 
 The [Flux][henrikflux] implementation chosen for **rex** is [Redux][redux].
 Redux is billed as "a predictable state container for JavaScript apps". As such,
@@ -49,7 +49,7 @@ actions to dispatch.
 [redux-promise][promise]. In **rex**, [routing][router] state is also integrated
 with [Redux][longroute].
 
-### React
+#### React
 
 [React][react] is [awesome][longreact]. It is basically a view library using
 JSX and providing a virtual DOM. React components are composable element types
@@ -59,7 +59,7 @@ By combining a virtual DOM with a unidirectional data flow, with React it isn't
 hard to build highly complex user interfaces that are extremely easy to reason
 about.
 
-### CSSModules
+#### CSSModules
 
 From a JavaScript developer's perspective, [CSS has some issues][vjeuxcss].
 [CSSModules][cssmodules] attempt to actually [solve][madderncss] some of them:
@@ -69,7 +69,7 @@ CSSModules aren't strictly tied to React or other parts of the **rex** stack,
 but React and CSSModules are quite the ideal combination.
 
 
-### CSSNext
+#### CSSNext
 
 CSS evolution basically obsoletes preprocessors such as LESS, SASS and Stylus.
 Using PostCSS and CSSNext, we have variables, nesting and lots of other goodies
@@ -87,7 +87,7 @@ runner it simply uses [npm scripts][subrun]. Instead of using Webpack with hot
 module reloading and all kinds of magic, **rex** simply leverages
 [Browserify][browserify] to make things [universal][mjuniversal].
 
-### Development mode
+#### Development mode
 
 In development mode, every single dependency needs to be installed. Development
 builds are unminified, contain source maps and produce some debug output.
@@ -97,7 +97,7 @@ npm install
 npm start
 ```
 
-### Production Mode
+#### Production Mode
 
 For production mode, dev-dependencies don't need to be pulled in - and build
 and server settings are automatically adjusted for maximum performance.
