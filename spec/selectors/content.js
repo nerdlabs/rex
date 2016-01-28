@@ -4,7 +4,8 @@ import test from 'tape';
 import {
   homeContentSelector,
   aboutContentSelector
-} from '../../src/selectors';
+}
+from '../../src/selectors';
 
 test('content action creators', ({ test, end }) => {
 
