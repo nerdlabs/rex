@@ -55,7 +55,7 @@ app.use(({ url }, res, next) => {
 
 swagger('spec/api.yaml', app,
   (_, { metadata, parseRequest, validateRequest, mock }) => {
-    app.use('/api', [metadata(), parseRequest(), validateRequest(), mock()]);
+    app.use('/api', metadata(), parseRequest(), validateRequest(), mock());
   }
 );
 
