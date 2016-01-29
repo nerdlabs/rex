@@ -1,13 +1,8 @@
 
 import test from 'tape';
 
-import reduce from '../../src/reducers/content';
-
-import {
-  UPDATE_HOME_CONTENT,
-  UPDATE_ABOUT_CONTENT
-}
-from '../../src/constants';
+import reduce, { fetchHomeContent, fetchAboutContent }
+from '../../src/reducers/content';
 
 test('content reducer states', ({ test, end }) => {
 
@@ -31,7 +26,7 @@ test('content reducer states', ({ test, end }) => {
   });
 
   test('content reducer partially updated state', ({ deepEqual, end }) => {
-    const state = reduce(undefined, { type: UPDATE_HOME_CONTENT, payload });
+    const state = reduce(undefined, { type: 'UPDATE_HOME_CONTENT', payload });
     {
       const actual = state.home;
       const expected = payload;
@@ -49,8 +44,8 @@ test('content reducer states', ({ test, end }) => {
 
   test('content reducer fully updated state', ({ deepEqual, end }) => {
     const state = reduce(
-      reduce(undefined, { type: UPDATE_HOME_CONTENT, payload }),
-      { type: UPDATE_ABOUT_CONTENT, payload }
+      reduce(undefined, { type: 'UPDATE_HOME_CONTENT', payload }),
+      { type: 'UPDATE_ABOUT_CONTENT', payload }
     );
     {
       const actual = state.home;
@@ -63,6 +58,38 @@ test('content reducer states', ({ test, end }) => {
       const expected = payload;
       const msg = 'updated about state should equal payload';
       deepEqual(actual, expected, msg);
+    }
+    end();
+  });
+
+  test('fetchHomeContent action creator output', ({ equal, ok, end }) => {
+    const action = fetchHomeContent();
+    {
+      const actual = action.type;
+      const expected = 'UPDATE_HOME_CONTENT';
+      const msg = `type should be ${ expected }`;
+      equal(actual, expected, msg);
+    }
+    {
+      const value = action.payload instanceof Promise;
+      const msg = 'payload should be a promise';
+      ok(value, msg);
+    }
+    end();
+  });
+
+  test('fetchAboutContent action creator output', ({ equal, ok, end }) => {
+    const action = fetchAboutContent();
+    {
+      const actual = action.type;
+      const expected = 'UPDATE_ABOUT_CONTENT';
+      const msg = `type should be ${ expected }`;
+      equal(actual, expected, msg);
+    }
+    {
+      const value = action.payload instanceof Promise;
+      const msg = 'payload should be a promise';
+      ok(value, msg);
     }
     end();
   });
