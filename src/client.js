@@ -1,17 +1,19 @@
 
-import { createElement } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
-import { Router, browserHistory as history } from 'react-router';
+import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 
-import { routes } from './containers';
+import routes from './routes';
 import { createStore } from './reducers';
 
-const store = createStore(history);
+const store = createStore(browserHistory);
 
 render(
-  createElement(Provider, { store },
-    createElement(Router, { history }, routes)
-  ),
+  <Provider store={ store }>
+    <Router history={ browserHistory }>
+      { routes }
+    </Router>
+  </Provider>,
   document.getElementById('rex')
 );

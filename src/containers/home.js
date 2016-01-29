@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { selectHomeContent, fetchHomeContent } from '../reducers';
+import { fetchHomeContent } from '../reducers';
 import { Content } from '../components';
 
-@connect(selectHomeContent)
+@connect(state => ({ content: state.content.home }))
 export default class Home extends Component {
   static needs = [
     fetchHomeContent

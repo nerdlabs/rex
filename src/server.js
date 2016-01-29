@@ -4,12 +4,12 @@ import compression from 'compression';
 import swagger from 'swagger-express-middleware';
 import { renderFile } from 'ejs';
 
-import { createElement } from 'react';
+import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext, createMemoryHistory } from 'react-router';
 import { Provider } from 'react-redux';
 
-import { routes } from './containers';
+import routes from './routes';
 import { createStore } from './reducers';
 
 const app = express();
@@ -42,9 +42,9 @@ app.use(({ url }, res, next) => {
         const css = app.getAssetUrl('main.css');
         const state = JSON.stringify(store.getState());
         const body = renderToString(
-          createElement(Provider, { store },
-            createElement(RouterContext, renderProps)
-          )
+          <Provider store={ store }>
+            <RouterContext { ...renderProps } />
+          </Provider>
         );
         res.render('template', { api, js, css, state, body });
       })

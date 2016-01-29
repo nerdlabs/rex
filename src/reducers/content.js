@@ -2,8 +2,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import fetch from 'isomorphic-fetch';
 
-import { createSelector } from '.';
-
 function fetchJSON(path) {
   return fetch(`${ global.__REX_API__ }/${ path }`)
   .then(res => {
@@ -21,14 +19,6 @@ export const fetchHomeContent = createAction(
 
 export const fetchAboutContent = createAction(
   'UPDATE_ABOUT_CONTENT', fetchJSON.bind(null, 'about')
-);
-
-export const selectHomeContent = createSelector(
-  __filename, state => ({ content: state.home })
-);
-
-export const selectAboutContent = createSelector(
-  __filename, state => ({ content: state.about })
 );
 
 export default handleActions(
