@@ -1,6 +1,9 @@
 
 import { createAction, handleActions } from 'redux-actions';
+import { createSelector } from 'reselect';
 import fetch from 'isomorphic-fetch';
+
+import { selectContent } from '.';
 
 function fetchJSON(path) {
   return fetch(`${ global.__REX_API__ }/${ path }`)
@@ -19,6 +22,14 @@ export const fetchHomeContent = createAction(
 
 export const fetchAboutContent = createAction(
   'UPDATE_ABOUT_CONTENT', fetchJSON.bind(null, 'about')
+);
+
+export const selectHomeContent = createSelector(
+  selectContent, state => ({ content: state.home })
+);
+
+export const selectAboutContent = createSelector(
+  selectContent, state => ({ content: state.about })
 );
 
 export default handleActions(
