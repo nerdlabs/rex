@@ -1,10 +1,8 @@
 
-import { createSelector } from 'reselect';
-
-import { selectRouting } from '.';
+import { createSelector } from '.';
 
 export const selectLocation = createSelector(
-  selectRouting,
+  __filename,
   state => state.location
 );
 

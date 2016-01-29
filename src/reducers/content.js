@@ -1,9 +1,8 @@
 
 import { createAction, handleActions } from 'redux-actions';
-import { createSelector } from 'reselect';
 import fetch from 'isomorphic-fetch';
 
-import { selectContent } from '.';
+import { createSelector } from '.';
 
 function fetchJSON(path) {
   return fetch(`${ global.__REX_API__ }/${ path }`)
@@ -25,11 +24,11 @@ export const fetchAboutContent = createAction(
 );
 
 export const selectHomeContent = createSelector(
-  selectContent, state => ({ content: state.home })
+  __filename, state => ({ content: state.home })
 );
 
 export const selectAboutContent = createSelector(
-  selectContent, state => ({ content: state.about })
+  __filename, state => ({ content: state.about })
 );
 
 export default handleActions(

@@ -16,9 +16,11 @@ export function createStore(history, state = global.__REX_DAT__) {
   return store;
 }
 
-export function selectContent(state) { return state.content; }
-
-export function selectRouting(state) { return state.routing; }
+export function createSelector(filename, ...args) {
+  const root = filename.replace(/^.*\/(.*?)\..*$/, '$1');
+  const selectors = [state => state[root], ...args];
+  return selectors.reduce.bind(selectors, (state, select) => select(state));
+}
 
 export * from './content';
 export * from './routing';
