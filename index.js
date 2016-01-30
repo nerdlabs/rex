@@ -1,15 +1,9 @@
 'use strict';
 
 require('babel-register');
-
-if (process.env.NODE_ENV === 'production') {
-  require('css-modules-require-hook')({
-    generateScopedName: require('css-modulesify').generateShortName
-  });
-}
-else {
-  require('css-modules-require-hook');
-}
+require('css-modules-require-hook')({
+  generateScopedName: '[name]__[local]___[hash:base64:5]'
+});
 
 global.__REX_API__ = process.env.API || 'http://localhost:3000/api';
 global.__REX_DAT__ = undefined;
