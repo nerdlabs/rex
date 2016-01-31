@@ -1,13 +1,12 @@
 
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { aboutContentSelector } from '../selectors';
-import { fetchAboutContent } from '../actions';
+import { fetchAboutContent } from '../reducers';
 import { Content } from '../components';
 
-@connect(aboutContentSelector)
-export default class About extends React.Component {
+@connect(state => ({ content: state.content.about }))
+export default class About extends Component {
   static needs = [
     fetchAboutContent
   ];

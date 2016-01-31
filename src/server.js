@@ -4,15 +4,13 @@ import compression from 'compression';
 import swagger from 'swagger-express-middleware';
 import { renderFile } from 'ejs';
 
-import { createElement } from 'react';
+import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext, createMemoryHistory } from 'react-router';
 import { Provider } from 'react-redux';
 
 import routes from './routes';
-import createStore from './store';
-
-import { DEV, API } from './constants';
+import { createStore } from './reducers';
 
 const app = express();
 
@@ -21,7 +19,9 @@ app.set('view engine', 'html');
 app.set('views', __dirname);
 
 app.use(compression());
-app.use(express.static('dist', { maxage: DEV ? 0 : '1y'}));
+app.use(express.static('dist', {
+  maxage: process.env.NODE_ENV !== 'production' ? 0 : '1y'
+}));
 app.use(({ url }, res, next) => {
   match({ routes, location: url }, (error, location, renderProps) => {
     switch (true) {
@@ -37,14 +37,14 @@ app.use(({ url }, res, next) => {
         needs ? Promise.all(needs.map(need => store.dispatch(need()))) : true
       )))
       .then(() => {
-        const api = API;
+        const api = global.__REX_API__;
         const js = app.getAssetUrl('main.js');
         const css = app.getAssetUrl('main.css');
         const state = JSON.stringify(store.getState());
         const body = renderToString(
-          createElement(Provider, { store },
-            createElement(RouterContext, renderProps)
-          )
+          <Provider store={ store }>
+            <RouterContext { ...renderProps } />
+          </Provider>
         );
         res.render('template', { api, js, css, state, body });
       })
@@ -55,7 +55,7 @@ app.use(({ url }, res, next) => {
 
 swagger('spec/api.yaml', app,
   (_, { metadata, parseRequest, validateRequest, mock }) => {
-    app.use('/api', [metadata(), parseRequest(), validateRequest(), mock()]);
+    app.use('/api', metadata(), parseRequest(), validateRequest(), mock());
   }
 );
 

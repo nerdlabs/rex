@@ -1,5 +1,5 @@
 
-import React from 'react'; // eslint-disable-line
+import React from 'react';
 import { Link, IndexLink } from 'react-router';
 
 import styles from './styles.css';

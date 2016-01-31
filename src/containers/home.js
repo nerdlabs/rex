@@ -1,13 +1,12 @@
 
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { homeContentSelector } from '../selectors';
-import { fetchHomeContent } from '../actions';
+import { fetchHomeContent } from '../reducers';
 import { Content } from '../components';
 
-@connect(homeContentSelector)
-export default class Home extends React.Component {
+@connect(state => ({ content: state.content.home }))
+export default class Home extends Component {
   static needs = [
     fetchHomeContent
   ];

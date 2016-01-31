@@ -3,7 +3,12 @@
     "indent": [ 1, 2 ],
     "quotes": [ 1, "single"],
     "linebreak-style": [ 2, "unix"],
-    "semi": [ 2, "always"]
+    "semi": [ 2, "always"],
+    "no-unused-vars": [ 2, {
+      "args": "after-used",
+      "argsIgnorePattern": "^_",
+      "varsIgnorePattern": "^React$"
+    }]
   },
   "env": {
     "es6": true,
@@ -14,9 +19,6 @@
     "jsx": true,
     "destructuring": true,
     "experimentalObjectRestSpread": true
-  },
-  "globals": {
-    "React": true
   },
   "extends": "eslint:recommended",
   "parser": "babel-eslint",
