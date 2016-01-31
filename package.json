@@ -3,15 +3,13 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "start": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run start-prod; else npm run start-dev; fi",
-    "start-prod": "npm run build; node index.js",
-    "start-dev": "npm run test; npm run tests & npm run watch & npm run server",
+    "start": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run start-prod --silent; else npm run start-dev --silent; fi",
+    "start-prod": "npm run build --silent; node index.js",
+    "start-dev": "npm run test --silent; npm run tests --silent & node index.js",
     "test": "tape -r babel-register -r css-modules-require-hook spec/**/*.js | tap-dot",
     "tests": "nodemon -w src -w spec -e js,html,css --no-colors -q -C -x 'npm run test --silent'",
     "server": "nodemon -w src -w spec/api.yaml -e js,html,css --no-colors -q index.js",
-    "watch": "webpack -w",
-    "build": "webpack -p",
-    "postinstall": "mkdir -p dist"
+    "build": "webpack --optimize-minimize --progress --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +23,6 @@
     "babel-eslint": "5.0.0-beta6",
     "eslint": "1.10.3",
     "eslint-plugin-react": "3.16.1",
-    "exorcist": "0.4.0",
     "nodemon": "1.8.1",
     "react-addons-test-utils": "0.14.7",
     "tap-dot": "1.0.1",
@@ -66,7 +63,8 @@
     "redux-promise": "0.5.1",
     "style-loader": "0.13.0",
     "swagger-express-middleware": "1.0.0-alpha.12",
-    "throng": "1.0.1",
-    "webpack": "1.12.12"
+    "webpack": "1.12.12",
+    "webpack-dev-middleware": "1.5.1",
+    "webpack-hot-middleware": "2.6.4"
   }
 }

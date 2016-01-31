@@ -1,10 +1,12 @@
 var webpack = require('webpack'); // eslint-disable-line
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var path = require('path');
 
 module.exports = {
-  entry: './src/client.js',
+  entry: [
+    './src/client.js',
+    'webpack-hot-middleware/client'
+  ],
   output: {
     filename: 'main.js',
     path: path.resolve('./dist'),
@@ -13,24 +15,24 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract(
+      { test: /\.css$/, loaders: [
         'style-loader',
-        [
-          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-          'postcss-loader'
-        ].join('!')
-      )}
+        'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+        'postcss-loader'
+      ]}
     ]
   },
   postcss: [
     require('./util/postcss-global'),
-    require('postcss-cssnext'),
-    require('csswring')
+    require('postcss-cssnext')
   ],
   resolve: {
     modulesDirectories: ['node_modules']
   },
   plugins: [
-    new ExtractTextPlugin('main.css', { allChunks: true })
-  ]
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
+  devtool: 'inline-source-map'
 };
