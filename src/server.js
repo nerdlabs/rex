@@ -54,8 +54,9 @@ app.use(({ url }, res, next) => {
 });
 
 swagger('spec/api.yaml', app,
-  (_, { metadata, parseRequest, validateRequest, mock }) => {
-    app.use('/api', metadata(), parseRequest(), validateRequest(), mock());
+  (_, { metadata, CORS, parseRequest, validateRequest, mock }) => {
+    const middleware = [metadata, CORS, parseRequest, validateRequest, mock];
+    app.use('/api', middleware.map(m => m()));
   }
 );
 
