@@ -4,12 +4,13 @@
   "license": "MIT",
   "scripts": {
     "start": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run start-prod --silent; else npm run start-dev --silent; fi",
-    "start-prod": "npm run build --silent; node index.js",
-    "start-dev": "npm run test --silent; npm run tests --silent & node index.js",
+    "start-prod": "mkdir -p dist; npm run build --silent; node index.js",
+    "start-dev": "npm run server --silent & npm run proxy --silent & npm run tests --silent",
     "test": "tape -r babel-register -r css-modules-require-hook spec/**/*.js | tap-dot",
-    "tests": "nodemon -w src -w spec -e js,html,css --no-colors -q -C -x 'npm run test --silent'",
+    "tests": "nodemon -w src -w spec -e js,html,css --no-colors -q -C -x 'npm test --silent'",
     "server": "nodemon -w src -w spec/api.yaml -e js,html,css --no-colors -q index.js",
-    "build": "webpack --optimize-minimize --progress --config webpack.prod.js"
+    "proxy": "BABEL_ENV=hot webpack-dev-server --hot --inline --no-info --config conf/webpack.dev.js",
+    "build": "webpack --optimize-minimize --progress --config conf/webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -21,12 +22,15 @@
   "homepage": "https://github.com/nerdlabs/rex#readme",
   "devDependencies": {
     "babel-eslint": "5.0.0-beta6",
+    "babel-preset-react-hmre": "1.0.1",
     "eslint": "1.10.3",
     "eslint-plugin-react": "3.16.1",
     "nodemon": "1.8.1",
     "react-addons-test-utils": "0.14.7",
     "tap-dot": "1.0.1",
-    "tape": "4.4.0"
+    "tape": "4.4.0",
+    "webpack-dev-server": "1.14.1",
+    "webpack-hot-middleware": "2.6.4"
   },
   "dependencies": {
     "babel-core": "6.4.5",
@@ -63,8 +67,6 @@
     "redux-promise": "0.5.1",
     "style-loader": "0.13.0",
     "swagger-express-middleware": "1.0.0-alpha.12",
-    "webpack": "1.12.12",
-    "webpack-dev-middleware": "1.5.1",
-    "webpack-hot-middleware": "2.6.4"
+    "webpack": "1.12.12"
   }
 }

@@ -11,7 +11,4 @@ global.__REX_DAT__ = undefined;
 var server = require('./src/server').default;
 server.getAssetUrl = require('./util/asset-url');
 
-var port = process.env.PORT || 3000;
-server.listen(port, function () {
-  console.log(`> rex listening on port ${port}`); // eslint-disable-line
-});
+server.listen(process.env.PORT || 3000);

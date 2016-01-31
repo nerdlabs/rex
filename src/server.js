@@ -2,10 +2,6 @@
 import express from 'express';
 import compression from 'compression';
 import { renderFile } from 'ejs';
-
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
 import swagger from 'swagger-express-middleware';
 
 import React from 'react';
@@ -16,8 +12,6 @@ import { Provider } from 'react-redux';
 import routes from './routes';
 import { createStore } from './reducers';
 
-import webpackConfig from '../webpack.dev.js';
-
 const isProd = process.env.NODE_ENV === 'production';
 
 const app = express();
@@ -27,6 +21,7 @@ app.set('view engine', 'html');
 app.set('views', __dirname);
 
 app.use(compression());
+app.use(express.static('dist', { maxage: '1y'}));
 app.use(({ url }, res, next) => {
   match({ routes, location: url }, (error, location, renderProps) => {
     switch (true) {
@@ -63,15 +58,6 @@ swagger('spec/api.yaml', app,
     app.use('/api', metadata(), parseRequest(), validateRequest(), mock());
   }
 );
-
-if (!isProd) {
-  const compiler = webpack(webpackConfig);
-  app.use(webpackDevMiddleware(compiler, { noInfo: true, quiet: true }));
-  app.use(webpackHotMiddleware(compiler));
-}
-else {
-  app.use(express.static('dist', { maxage: '1y'}));
-}
 
 app.getAssetUrl = path => `/${path}`;
 

@@ -1,16 +1,14 @@
-var webpack = require('webpack'); // eslint-disable-line
 
 var path = require('path');
 
 module.exports = {
   entry: [
-    './src/client.js',
-    'webpack-hot-middleware/client'
+    './src/client.js'
   ],
   output: {
     filename: 'main.js',
     path: path.resolve('./dist'),
-    libraryTarget: 'umd'
+    publicPath: '/'
   },
   module: {
     loaders: [
@@ -23,16 +21,16 @@ module.exports = {
     ]
   },
   postcss: [
-    require('./util/postcss-global'),
+    require('../util/postcss-global'),
     require('postcss-cssnext')
   ],
   resolve: {
     modulesDirectories: ['node_modules']
   },
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ],
-  devtool: 'inline-source-map'
+  devtool: 'inline-source-map',
+  devServer: {
+    proxy: {
+      '*': 'http://localhost:3000'
+    }
+  }
 };

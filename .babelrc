@@ -5,7 +5,14 @@
     "stage-0"
   ],
   "plugins": [
-    "babel-plugin-transform-decorators-legacy",
-    "babel-plugin-transform-strict-mode"
-  ]
+    "transform-decorators-legacy",
+    "transform-strict-mode"
+  ],
+  "env": {
+    "hot": {
+      "presets": [
+        "react-hmre"
+      ]
+    }
+  }
 }

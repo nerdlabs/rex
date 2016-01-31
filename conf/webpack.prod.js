@@ -1,4 +1,4 @@
-var webpack = require('webpack'); // eslint-disable-line
+var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var path = require('path');
@@ -7,8 +7,7 @@ module.exports = {
   entry: './src/client.js',
   output: {
     filename: 'main.js',
-    path: path.resolve('./dist'),
-    libraryTarget: 'umd'
+    path: path.resolve('./dist')
   },
   module: {
     loaders: [
@@ -23,7 +22,7 @@ module.exports = {
     ]
   },
   postcss: [
-    require('./util/postcss-global'),
+    require('../util/postcss-global'),
     require('postcss-cssnext'),
     require('csswring')
   ],
