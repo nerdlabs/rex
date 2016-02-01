@@ -1,7 +1,11 @@
+'use strict ';
+
+var path = require('path');
+
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var path = require('path');
+var scopedName = require('./scoped-name');
 
 module.exports = {
   entry: './src/client.js',
@@ -15,14 +19,14 @@ module.exports = {
       { test: /\.css$/, loader: ExtractTextPlugin.extract(
         'style-loader',
         [
-          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+          'css-loader?modules&importLoaders=1&localIdentName='+ scopedName,
           'postcss-loader'
         ].join('!')
       )}
     ]
   },
   postcss: [
-    require('../util/postcss-global'),
+    require('./postcss-global'),
     require('postcss-cssnext'),
     require('csswring')
   ],

@@ -1,5 +1,8 @@
+'use strict';
 
 var path = require('path');
+
+var scopedName = require('./scoped-name');
 
 module.exports = {
   entry: [
@@ -15,13 +18,13 @@ module.exports = {
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.css$/, loaders: [
         'style-loader',
-        'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+        'css-loader?modules&importLoaders=1&localIdentName='+ scopedName,
         'postcss-loader'
       ]}
     ]
   },
   postcss: [
-    require('../util/postcss-global'),
+    require('./postcss-global'),
     require('postcss-cssnext')
   ],
   resolve: {

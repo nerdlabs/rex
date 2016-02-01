@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "start": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run start-prod --silent; else npm run start-dev --silent; fi",
-    "start-prod": "mkdir -p dist; npm run build --silent; node index.js",
-    "start-dev": "npm run server --silent & npm run proxy --silent & npm run tests --silent",
+    "start": "[ \"$NODE_ENV\" = \"production\" ] && npm run start-prod -s || npm run start-dev -s",
+    "start-prod": "mkdir -p dist; npm run build -s; node index.js",
+    "start-dev": "npm run server -s & npm run proxy -s & npm run tests -s",
     "test": "tape -r babel-register -r css-modules-require-hook spec/**/*.js | tap-dot",
-    "tests": "nodemon -w src -w spec -e js,html,css --no-colors -q -C -x 'npm test --silent'",
+    "tests": "nodemon -w src -w spec -e js,html,css --no-colors -q -C -x 'npm test -s'",
     "server": "nodemon -w src -w spec/api.yaml -e js,html,css --no-colors -q index.js",
     "proxy": "BABEL_ENV=hot webpack-dev-server --hot --inline --no-info --config util/webpack.dev.js",
     "build": "webpack --optimize-minimize --progress --config util/webpack.prod.js"
