@@ -10,8 +10,8 @@ var scopedName = require('./scoped-name');
 module.exports = {
   entry: './src/client.js',
   output: {
-    filename: 'main.js',
-    path: path.resolve('./dist')
+    path: path.resolve('./dist'),
+    filename: 'main-[hash].js'
   },
   module: {
     loaders: [
@@ -34,9 +34,14 @@ module.exports = {
     modulesDirectories: ['node_modules']
   },
   plugins: [
-    new ExtractTextPlugin('main.css', { allChunks: true }),
+    new ExtractTextPlugin('main-[hash].css', { allChunks: true }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"'+ process.env.NODE_ENV +'"'
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
     })
   ]
 };
