@@ -65,7 +65,7 @@
     "react-dom": "0.14.7",
     "react-redux": "4.1.2",
     "react-router": "2.0.0-rc5",
-    "react-router-redux": "2.1.0",
+    "react-router-redux": "3.0.0",
     "redux": "3.1.5",
     "redux-actions": "0.9.1",
     "redux-promise": "0.5.1",
