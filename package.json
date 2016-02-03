@@ -13,7 +13,7 @@
     "watch-js": "watchify -d -t babelify -p [css-modulesify --after postcss-cssnext --after $PWD/util/postcss-global -o dist/main.css] -o dist/main.js.tmp src/client.js",
     "watch-extract": "onchange dist/main.js.tmp -- npm run extract --silent",
     "extract": "<dist/main.js.tmp exorcist dist/main.js.map > dist/main.js",
-    "build": "browserify -t babelify -g envify -g [uglifyify -x .js] -p [css-modulesify --after postcss-cssnext --after $PWD/util/postcss-global --after csswring -o dist/main.css] -o dist/main.js src/client.js",
+    "build": "browserify -t babelify -g envify -g [uglifyify -x .js] -p [css-modulesify --after postcss-cssnext --after $PWD/util/postcss-global --after csswring -o dist/main.css] src/client.js | uglifyjs -mc warnings=false > dist/main.js",
     "postinstall": "mkdir -p dist"
   },
   "repository": {
@@ -26,7 +26,6 @@
   "homepage": "https://github.com/nerdlabs/rex#readme",
   "devDependencies": {
     "babel-eslint": "5.0.0-beta6",
-    "envify": "3.4.0",
     "eslint": "1.10.3",
     "eslint-plugin-react": "3.16.1",
     "exorcist": "0.4.0",
@@ -52,6 +51,7 @@
     "css-modulesify": "0.17.0",
     "csswring": "4.2.1",
     "ejs": "2.4.1",
+    "envify": "3.4.0",
     "express": "4.13.4",
     "isomorphic-fetch": "2.2.1",
     "normalize.css": "3.0.3",
@@ -71,6 +71,7 @@
     "redux-promise": "0.5.1",
     "swagger-express-middleware": "1.0.0-alpha.12",
     "throng": "1.0.1",
+    "uglify-js": "2.6.1",
     "uglifyify": "3.0.1"
   }
 }
