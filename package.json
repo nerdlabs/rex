@@ -28,6 +28,9 @@
     "eslint-plugin-react": "3.16.1",
     "nodemon": "1.8.1",
     "react-addons-test-utils": "0.14.7",
+    "stylelint": "4.2.0",
+    "stylelint-config-standard": "3.0.0",
+    "swagger-express-middleware": "1.0.0-alpha.12",
     "tap-dot": "1.0.1",
     "tape": "4.4.0",
     "webpack-dev-server": "1.14.1",
@@ -67,7 +70,6 @@
     "redux-actions": "0.9.1",
     "redux-promise": "0.5.1",
     "style-loader": "0.13.0",
-    "swagger-express-middleware": "1.0.0-alpha.12",
     "webpack": "1.12.12"
   }
 }
