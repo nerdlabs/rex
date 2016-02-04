@@ -2,7 +2,6 @@
 import express from 'express';
 import compression from 'compression';
 import { renderFile } from 'ejs';
-import swagger from 'swagger-express-middleware';
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -52,13 +51,6 @@ app.use(({ url }, res, next) => {
     }
   });
 });
-
-swagger('spec/api.yaml', app,
-  (_, { metadata, CORS, parseRequest, validateRequest, mock }) => {
-    const middleware = [metadata, CORS, parseRequest, validateRequest, mock];
-    app.use('/api', middleware.map(m => m()));
-  }
-);
 
 app.getAssetUrl = path => `/${path}`;
 
