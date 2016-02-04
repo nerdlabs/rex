@@ -15,5 +15,5 @@ render(
       { routes }
     </Router>
   </Provider>,
-  document.getElementById('rex')
+  document.querySelector('main')
 );
