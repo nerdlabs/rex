@@ -66,7 +66,7 @@
     "react-redux": "4.4.0",
     "react-router": "2.0.0-rc5",
     "react-router-redux": "3.0.0",
-    "redux": "3.3.0",
+    "redux": "3.3.1",
     "redux-actions": "0.9.1",
     "redux-promise": "0.5.1",
     "swagger-express-middleware": "1.0.0-alpha.12",
