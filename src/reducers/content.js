@@ -1,24 +1,15 @@
 
 import { createAction, handleActions } from 'redux-actions';
-import fetch from 'isomorphic-fetch';
-
-function fetchJSON(path) {
-  return fetch(`${ global.__REX_API__ }/${ path }`)
-  .then(res => {
-    if (res.status >= 200 && res.status < 300) {
-      return res;
-    }
-    throw new Error(`http status: ${ res.status }`);
-  })
-  .then(res => res.json());
-}
+import { fetchJSON } from '../../util/network';
 
 export const fetchHomeContent = createAction(
-  'UPDATE_HOME_CONTENT', fetchJSON.bind(null, 'home')
+  'UPDATE_HOME_CONTENT',
+  fetchJSON.bind(null, `${ global.__REX_API__ }/home`)
 );
 
 export const fetchAboutContent = createAction(
-  'UPDATE_ABOUT_CONTENT', fetchJSON.bind(null, 'about')
+  'UPDATE_ABOUT_CONTENT',
+  fetchJSON.bind(null, `${ global.__REX_API__ }/about`)
 );
 
 export default handleActions(
