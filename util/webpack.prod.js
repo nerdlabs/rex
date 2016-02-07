@@ -19,7 +19,7 @@ module.exports = {
       { test: /\.css$/, loader: ExtractTextPlugin.extract(
         'style-loader',
         [
-          'css-loader?modules&importLoaders=1&localIdentName='+ scopedName,
+          'css-loader?modules&importLoaders=1&localIdentName=' + scopedName,
           'postcss-loader'
         ].join('!')
       )}
@@ -36,7 +36,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('main-[hash].css', { allChunks: true }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"'+ process.env.NODE_ENV +'"'
+      'process.env.NODE_ENV': '"' + process.env.NODE_ENV + '"'
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {

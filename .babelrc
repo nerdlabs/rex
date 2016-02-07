@@ -10,9 +10,7 @@
   ],
   "env": {
     "hot": {
-      "presets": [
-        "react-hmre"
-      ]
+      "presets": ["react-hmre"]
     }
   }
 }

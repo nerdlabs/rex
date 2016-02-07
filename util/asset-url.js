@@ -8,11 +8,11 @@ if (process.env.NODE_ENV === 'production') {
     return result;
   }, {});
   module.exports = function (fileName) {
-    return '/'+ lookup[fileName];
+    return '/' + lookup[fileName];
   };
 }
 else {
   module.exports = function (fileName) {
-    return '/'+ fileName +'?'+ Date.now().toString(16);
+    return '/' + fileName + '?' + Date.now().toString(16);
   };
 }

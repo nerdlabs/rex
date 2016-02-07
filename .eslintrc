@@ -1,4 +1,5 @@
 {
+  "extends": "eslint:recommended",
   "rules": {
     "indent": [ 1, 2 ],
     "quotes": [ 1, "single"],
@@ -16,11 +17,8 @@
     "browser": true
   },
   "ecmaFeatures": {
-    "jsx": true,
-    "destructuring": true,
-    "experimentalObjectRestSpread": true
+    "jsx": true
   },
-  "extends": "eslint:recommended",
   "parser": "babel-eslint",
-  "plugins": ["react"]
+  "plugins": ["babel", "react"]
 }

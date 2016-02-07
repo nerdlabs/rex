@@ -8,7 +8,7 @@
     "start-dev": "npm run dev-server -s & npm run dev-proxy -s & npm run tests -s",
     "test": "tape -r babel-register -r css-modules-require-hook spec/**/*.js | tap-dot",
     "tests": "nodemon -w src -w spec -e js,html,css -q -C -x 'npm run lint -s; npm test -s'",
-    "lint": "jscs src || true; eslint src || true; stylelint src/**/*.css || true",
+    "lint": "jscs src util spec || true; eslint src util spec || true; stylelint src/**/*.css || true",
     "dev-server": "nodemon -w src -w spec/api.yaml -e js,html,css -q index.js",
     "dev-proxy": "BABEL_ENV=hot webpack-dev-server --hot --inline --no-info --config util/webpack.dev.js",
     "build": "webpack --optimize-minimize --optimize-occurence-order --progress --config util/webpack.prod.js",
