@@ -1,0 +1,11 @@
+{
+	"esnext": true,
+	"preset": "airbnb",
+	"disallowKeywordsOnNewLine": [],
+	"disallowTrailingComma": true,
+	"requireKeywordsOnNewLine": ["else"],
+	"requirePaddingNewLinesAfterBlocks": false,
+	"requireSpacesInsideObjectBrackets": false,
+	"requireTrailingComma": false,
+	"validateQuoteMarks": "'"
+}

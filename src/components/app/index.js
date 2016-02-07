@@ -11,10 +11,10 @@ export default class App extends Component {
       <div className={ styles.wrapper }>
         <nav className={ styles.header }>
           <h1 className={ styles.logo }>
-            <IndexLink to="/">rex demos</IndexLink>
+            <IndexLink to='/'>rex demos</IndexLink>
           </h1>
           <ul className={ styles.menu }>
-            <li><Link to="/about">About</Link></li>
+            <li><Link to='/about'>About</Link></li>
           </ul>
         </nav>
         { children }
