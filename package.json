@@ -70,7 +70,7 @@
     "redux-actions": "0.9.1",
     "redux-promise": "0.5.1",
     "swagger-express-middleware": "1.0.0-alpha.12",
-    "throng": "1.0.1",
+    "throng": "2.0.0",
     "uglify-js": "2.6.1",
     "uglifyify": "3.0.1"
   }
