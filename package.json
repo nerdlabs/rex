@@ -55,7 +55,7 @@
     "express": "4.13.4",
     "isomorphic-fetch": "2.2.1",
     "normalize.css": "3.0.3",
-    "postcss": "5.0.14",
+    "postcss": "5.0.16",
     "postcss-cssnext": "2.4.0",
     "postcss-modules-extract-imports": "1.0.0",
     "postcss-modules-local-by-default": "1.0.1",
