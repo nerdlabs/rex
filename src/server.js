@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import routes from './routes';
 import { createStore } from './reducers';
 
+const api = global.__REX_API__; // eslint-disable-line no-underscore-dangle
 const isProd = process.env.NODE_ENV === 'production';
 
 const app = express();
@@ -30,13 +31,12 @@ app.use(({ url }, res, next) => {
       return next(error);
     case !!location:
       return res.redirect(location.pathname);
-    case !!renderProps:
+    case !!renderProps: {
       const store = createStore(createMemoryHistory());
       return Promise.all(renderProps.components.map(({ needs }) => (
         needs ? Promise.all(needs.map(need => store.dispatch(need()))) : true
       )))
       .then(() => {
-        const api = global.__REX_API__;
         const js = app.getAssetUrl('main.js');
         const css = isProd ? app.getAssetUrl('main.css') : null;
         const state = JSON.stringify(store.getState());
@@ -48,7 +48,7 @@ app.use(({ url }, res, next) => {
         res.render('template', { api, js, css, state, body });
       })
       .catch(next);
-    }
+    }}
   });
 });
 

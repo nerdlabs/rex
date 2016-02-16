@@ -1,7 +1,11 @@
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 export default class Content extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+    body: PropTypes.string
+  };
   render() {
     const { title, body } = this.props;
     return (

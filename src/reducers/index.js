@@ -5,7 +5,9 @@ import promiseMiddleware from 'redux-promise';
 
 import content from './content';
 
-export function createStore(history, state = global.__REX_DAT__) {
+const dat = global.__REX_DAT__; // eslint-disable-line no-underscore-dangle
+
+export function createStore(history, state = dat) {
   const middleware = syncHistory(history);
   const enhancer = applyMiddleware(promiseMiddleware, middleware);
   const reducer = combineReducers({ content, routing });

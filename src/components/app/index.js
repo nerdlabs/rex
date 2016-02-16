@@ -1,10 +1,13 @@
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
 
 import styles from './styles.css';
 
 export default class App extends Component {
+  static propTypes = {
+    children: PropTypes.node
+  };
   render() {
     const { children } = this.props;
     return (

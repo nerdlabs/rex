@@ -1,15 +1,16 @@
 
 import { createAction, handleActions } from 'redux-actions';
-import { fetchJSON } from '../../util/network';
+
+import { fetchJSON } from '../network';
 
 export const fetchHomeContent = createAction(
   'UPDATE_HOME_CONTENT',
-  fetchJSON.bind(null, `${ global.__REX_API__ }/home`)
+  fetchJSON.bind(null, 'home')
 );
 
 export const fetchAboutContent = createAction(
   'UPDATE_ABOUT_CONTENT',
-  fetchJSON.bind(null, `${ global.__REX_API__ }/about`)
+  fetchJSON.bind(null, 'about')
 );
 
 export default handleActions(

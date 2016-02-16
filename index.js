@@ -6,7 +6,7 @@ require('css-modules-require-hook')({
 });
 
 var port = process.env.PORT || 3000;
-global.__REX_API__ = process.env.API || 'http://localhost:'+ port +'/api';
+global.__REX_API__ = process.env.API || 'http://localhost:' + port + '/api';
 global.__REX_DAT__ = undefined;
 
 var server = require('./src/server').default;
@@ -15,8 +15,8 @@ server.getAssetUrl = require('./util/asset-url');
 if (process.env.NODE_ENV !== 'production') {
   require('swagger-express-middleware')('spec/api.yaml', server,
     function (_, middlewares) {
-      var keys = ['metadata','CORS','parseRequest','validateRequest','mock'];
-      server.use('/api', keys.reduce(function(result, key) {
+      var keys = ['metadata', 'CORS', 'parseRequest', 'validateRequest', 'mock'];
+      server.use('/api', keys.reduce(function (result, key) {
         result.push(middlewares[key]());
         return result;
       }, []));
