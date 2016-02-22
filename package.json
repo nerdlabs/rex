@@ -71,7 +71,7 @@
     "redux-promise": "0.5.1",
     "swagger-express-middleware": "1.0.0-alpha.12",
     "throng": "2.0.1",
-    "uglify-js": "2.6.1",
+    "uglify-js": "2.6.2",
     "uglifyify": "3.0.1"
   }
 }
