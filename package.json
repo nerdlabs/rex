@@ -26,13 +26,13 @@
   "homepage": "https://github.com/nerdlabs/rex#readme",
   "devDependencies": {
     "babel-eslint": "5.0.0",
-    "eslint": "2.1.0",
-    "eslint-plugin-react": "3.16.1",
+    "eslint": "2.2.0",
+    "eslint-plugin-react": "4.0.0",
     "exorcist": "0.4.0",
-    "nodemon": "1.8.1",
+    "nodemon": "1.9.0",
     "onchange": "2.0.0",
     "react-addons-test-utils": "0.14.7",
-    "tap-dot": "1.0.1",
+    "tap-dot": "1.0.4",
     "tape": "4.4.0",
     "watchify": "3.7.0"
   },
@@ -65,13 +65,13 @@
     "react-dom": "0.14.7",
     "react-redux": "4.4.0",
     "react-router": "2.0.0",
-    "react-router-redux": "3.0.0",
+    "react-router-redux": "4.0.0",
     "redux": "3.3.1",
     "redux-actions": "0.9.1",
     "redux-promise": "0.5.1",
     "swagger-express-middleware": "1.0.0-alpha.12",
     "throng": "2.0.1",
-    "uglify-js": "2.6.1",
+    "uglify-js": "2.6.2",
     "uglifyify": "3.0.1"
   }
 }
