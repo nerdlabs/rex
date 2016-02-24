@@ -5,8 +5,7 @@
     "stage-0"
   ],
   "plugins": [
-    "transform-decorators-legacy",
-    "transform-strict-mode"
+    "transform-decorators-legacy"
   ],
   "env": {
     "hot": {

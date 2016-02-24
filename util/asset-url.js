@@ -12,6 +12,11 @@ if (process.env.NODE_ENV === 'production') {
 }
 else {
   module.exports = function (fileName) {
-    return '/' + fileName + '?' + Date.now().toString(16);
+    if (fileName.indexOf('.css') < 0) {
+      return '/' + fileName + '?' + Date.now().toString(16);
+    }
+    else {
+      return null;
+    }
   };
 }

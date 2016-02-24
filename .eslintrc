@@ -1,7 +1,7 @@
 {
   "extends": "eslint:recommended",
   "rules": {
-    "indent": [ 1, 2 ],
+    "indent": [ 1, 2, {"SwitchCase": 1}],
     "quotes": [ 1, "single"],
     "linebreak-style": [ 2, "unix"],
     "semi": [ 2, "always"],

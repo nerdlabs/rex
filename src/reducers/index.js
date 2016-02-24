@@ -1,19 +1,35 @@
 
-import { combineReducers, applyMiddleware, createStore as create } from 'redux';
-import { syncHistory, routeReducer as routing } from 'react-router-redux';
-import promiseMiddleware from 'redux-promise';
+import {
+  applyMiddleware,
+  combineReducers,
+  compose,
+  createStore
+}
+from 'redux';
+
+import {
+  routerMiddleware,
+  routerReducer,
+  syncHistoryWithStore
+}
+from 'react-router-redux';
+
+import thunk from 'redux-thunk';
 
 import content from './content';
 
 const defaults = global.__REX_DAT__; // eslint-disable-line no-underscore-dangle
+const routing = routerReducer;
 
-export function createStore(history, state = defaults) {
-  const middleware = syncHistory(history);
-  const enhancer = applyMiddleware(promiseMiddleware, middleware);
+export function createRouterStore(rawHistory, state = defaults) {
   const reducer = combineReducers({ content, routing });
-  const store = create(reducer, state, enhancer);
-  middleware.listenForReplays(store);
-  return store;
+  const enhancer = compose(
+    applyMiddleware(thunk, routerMiddleware(rawHistory)),
+    global.devToolsExtension ? global.devToolsExtension() : fn => fn
+  );
+  const store = createStore(reducer, state, enhancer);
+  const history = syncHistoryWithStore(rawHistory, store);
+  return Object.assign(store, { history });
 }
 
 export * from './content';

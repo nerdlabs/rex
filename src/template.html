@@ -8,10 +8,10 @@
 </head>
 <body>
 <main><%- body %></main>
-<script type="text/javascript">
+<script>
 __REX_API__ = "<%= api %>";
 __REX_DAT__ = <%- state %>;
 </script>
-<script src="<%= js %>" async></script>
+<% if (js) { %><script src="<%= js %>" async></script><% } %>
 </body>
 </html>
