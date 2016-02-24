@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchAboutContent } from '../reducers';
@@ -10,6 +10,10 @@ export default class About extends Component {
   static needs = [
     fetchAboutContent
   ];
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    content: PropTypes.object
+  };
   componentDidMount() {
     const { dispatch, content } = this.props;
     if (!Object.keys(content).length) {

@@ -83,18 +83,20 @@ range of current browsers.
 ## Tooling
 
 **rex** is keeping it simple: instead of using Grunt, Gulp or another task
-runner it simply uses [npm scripts][subrun]. Instead of using Webpack with hot
-module reloading and all kinds of magic, **rex** simply leverages
-[Browserify][browserify] to make things [universal][mjuniversal].
+runner it simply uses [npm scripts][subrun]. **rex** uses [Webpack][webpack]
+with hot module reloading and all kinds of magic 🦄.
 
 #### Development mode
 
 In development mode, every single dependency needs to be installed. Development
-builds are unminified, contain source maps and produce some debug output.
+"builds" are unminified, contain source maps and produce some debug output. They
+are generated and delivered by an instance of webpack-dev-server that is also
+acting as an inline proxy and supporting hot module replacement.
 
 ```
 npm install
 npm start
+open http://localhost:3000
 ```
 
 #### Production Mode
@@ -120,7 +122,7 @@ npm start --production
 [actions]: https://github.com/acdlite/redux-actions
 [promise]: https://github.com/acdlite/redux-promise
 
-[browserify]: http://browserify.org/
+[webpack]: https://webpack.github.io
 [babel]: https://babeljs.io/
 [es6]: http://exploringjs.com/es6/
 [katas]: http://es6katas.org/

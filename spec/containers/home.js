@@ -18,7 +18,7 @@ test('home route component output', ({ test, end }) => {
     {
       const actual = element.type;
       const expected = Home.WrappedComponent;
-      const msg = `root element should be a wrapped component`;
+      const msg = 'root element should be a wrapped component';
       equal(actual, expected, msg);
     }
     end();

@@ -1,4 +1,4 @@
 
- export Home from './home';
+export Home from './home';
 
- export About from './about';
+export About from './about';
