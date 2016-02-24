@@ -1,25 +1,12 @@
 
-import {
-  applyMiddleware,
-  combineReducers,
-  compose,
-  createStore
-}
-from 'redux';
-
-import {
-  routerMiddleware,
-  routerReducer,
-  syncHistoryWithStore
-}
-from 'react-router-redux';
-
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import thunk from 'redux-thunk';
 
 import content from './content';
+import routing from './routing';
 
 const defaults = global.__REX_DAT__; // eslint-disable-line no-underscore-dangle
-const routing = routerReducer;
 
 export function createRouterStore(rawHistory, state = defaults) {
   const reducer = combineReducers({ content, routing });
@@ -33,3 +20,4 @@ export function createRouterStore(rawHistory, state = defaults) {
 }
 
 export * from './content';
+export * from './routing';
