@@ -6,7 +6,7 @@
     "start": "[ \"$NODE_ENV\" = \"production\" ] && npm run start-prod -s || npm run start-dev -s",
     "start-prod": "npm run build -s; node index.js",
     "start-dev": "npm run dev-server -s & npm run dev-proxy -s & npm run tests -s",
-    "test": "tape -r babel-register -r css-modules-require-hook spec/**/*.js | tap-dot",
+    "test": "./util/test.js spec/**/*.js | tap-dot",
     "tests": "nodemon -w src -w spec -e js,html,css -q -C -x 'npm run lint -s; npm test -s'",
     "lint": "eslint src util spec || true; stylelint src/**/*.css || true",
     "dev-server": "nodemon -w src -w spec/api.yaml -e js,html,css -q index.js",
