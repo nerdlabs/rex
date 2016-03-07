@@ -1,8 +1,12 @@
 
 require('babel-register');
-require('css-modules-require-hook')({
-  generateScopedName: require('./util/scoped-name')
-});
+var cssConfig = {};
+if (process.env.NODE_ENV === 'production') {
+  Object.assign(cssConfig, {
+    generateScopedName: require('css-modulesify').generateShortName
+  });
+}
+require('css-modules-require-hook')(cssConfig);
 
 var port = process.env.PORT || 3000;
 /* eslint-disable no-underscore-dangle */
