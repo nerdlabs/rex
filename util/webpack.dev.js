@@ -1,6 +1,8 @@
 
 module.exports = {
   entry: [
+    'normalize.css',
+    './util/global.css',
     './src/client.js'
   ],
   output: {
@@ -10,7 +12,8 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+      { test: /\.json$/, loader: 'json' },
       { test: /\.css$/, loaders: [
         'style',
         'css?modules&localIdentName=' + require('./scoped-name'),
@@ -19,7 +22,7 @@ module.exports = {
     ]
   },
   postcss: [
-    require('./postcss-global'),
+    require('postcss-modules-values'),
     require('postcss-cssnext')
   ],
   devServer: {
